@@ -1,0 +1,6 @@
+@Residencial.GastosAPI_HostAddress = http://localhost:5208
+
+GET {{Residencial.GastosAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
