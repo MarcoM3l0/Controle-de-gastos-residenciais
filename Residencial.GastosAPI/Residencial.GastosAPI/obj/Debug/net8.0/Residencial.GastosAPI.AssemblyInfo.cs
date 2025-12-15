@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Residencial.GastosAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee87371a2e9833738d202216bf0e5df4c0d6d1f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4cbbedd460e8b5648a74fa500d6335014c65236f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Residencial.GastosAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Residencial.GastosAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
