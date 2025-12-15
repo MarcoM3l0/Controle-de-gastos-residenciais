@@ -1,11 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using MySqlConnector;
 using Residencial.GastosAPI.Context;
+using Residencial.GastosAPI.DTOs.Mappings;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter());
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,6 +22,11 @@ string mysqlConnection = builder.Configuration.GetConnectionString("DefaultConne
 
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(mysqlConnection, ServerVersion.AutoDetect(mysqlConnection)));
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<MappingProfile>();
+});
 
 var app = builder.Build();
 
