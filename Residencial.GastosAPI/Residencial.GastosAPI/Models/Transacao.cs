@@ -1,13 +1,14 @@
-﻿using System.Text.Json.Serialization;
+﻿using Residencial.GastosAPI.Models.Enums;
+using System.Text.Json.Serialization;
 
 namespace Residencial.GastosAPI.Models;
 
 public class Transacao
 {
     public int TransacaoId { get; set; }
-    public string? descricao { get; set; }
-    public decimal valor { get; set; }
-    public string? tipo { get; set; }
+    public string? Descricao   { get; set; }
+    public decimal Valor { get; set; }
+    public TipoTransacao Tipo { get; set; }
 
     // Relacionamento N:1 com Pessoa
     [JsonIgnore]
