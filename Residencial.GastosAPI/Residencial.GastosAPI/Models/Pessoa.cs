@@ -7,5 +7,5 @@ public class Pessoa
     public int Idade { get; set; }
 
     // Relacionamento 1:N com Transacao
-    public ICollection<Transacao>? Transacao { get; set; }
+    public ICollection<Transacao>? Transacoes { get; set; }
 }

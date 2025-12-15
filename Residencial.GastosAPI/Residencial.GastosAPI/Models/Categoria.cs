@@ -9,5 +9,5 @@ public class Categoria
     public FinalidadeCategoria Finalidade { get; set; }
 
     // Relacionamento 1:N com Transacao
-    public ICollection<Transacao>? Transacao { get; set; }
+    public ICollection<Transacao>? Transacoes { get; set; }
 }
