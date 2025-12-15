@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|d:\\estudos\\controle de gastos\\residencial.gastosapi\\residencial.gastosapi\\models\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\models\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|d:\\estudos\\controle de gastos\\residencial.gastosapi\\residencial.gastosapi\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\models\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +15,8 @@
       "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\models\\transacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|d:\\estudos\\controle de gastos\\residencial.gastosapi\\residencial.gastosapi\\models\\enums\\tipotransacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\models\\enums\\tipotransacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|d:\\estudos\\controle de gastos\\residencial.gastosapi\\residencial.gastosapi\\models\\enums\\finalidadecategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\models\\enums\\finalidadecategoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|d:\\estudos\\controle de gastos\\residencial.gastosapi\\residencial.gastosapi\\models\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\models\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|d:\\estudos\\controle de gastos\\residencial.gastosapi\\residencial.gastosapi\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2138369D-E3CF-4BC3-96D8-99A2D3720ED7}|Residencial.GastosAPI\\Residencial.GastosAPI.csproj|solutionrelative:residencial.gastosapi\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,67 +34,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FinalidadeCategoria.cs",
-              "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Enums\\FinalidadeCategoria.cs",
-              "RelativeDocumentMoniker": "Residencial.GastosAPI\\Models\\Enums\\FinalidadeCategoria.cs",
-              "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Enums\\FinalidadeCategoria.cs",
-              "RelativeToolTip": "Residencial.GastosAPI\\Models\\Enums\\FinalidadeCategoria.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T19:32:13.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TipoTransacao.cs",
-              "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Enums\\TipoTransacao.cs",
-              "RelativeDocumentMoniker": "Residencial.GastosAPI\\Models\\Enums\\TipoTransacao.cs",
-              "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Enums\\TipoTransacao.cs",
-              "RelativeToolTip": "Residencial.GastosAPI\\Models\\Enums\\TipoTransacao.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T19:30:56.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Transacao.cs",
-              "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Transacao.cs",
-              "RelativeDocumentMoniker": "Residencial.GastosAPI\\Models\\Transacao.cs",
-              "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Transacao.cs",
-              "RelativeToolTip": "Residencial.GastosAPI\\Models\\Transacao.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBEAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T19:08:58.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Categoria.cs",
               "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Categoria.cs",
               "RelativeDocumentMoniker": "Residencial.GastosAPI\\Models\\Categoria.cs",
               "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Categoria.cs",
               "RelativeToolTip": "Residencial.GastosAPI\\Models\\Categoria.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T19:07:10.738Z",
+              "WhenOpened": "2025-12-15T20:24:30.787Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "Transacao.cs",
+              "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Transacao.cs",
+              "RelativeDocumentMoniker": "Residencial.GastosAPI\\Models\\Transacao.cs",
+              "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Transacao.cs",
+              "RelativeToolTip": "Residencial.GastosAPI\\Models\\Transacao.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T20:24:28.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Pessoa.cs",
               "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Pessoa.cs",
               "RelativeDocumentMoniker": "Residencial.GastosAPI\\Models\\Pessoa.cs",
               "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Models\\Pessoa.cs",
               "RelativeToolTip": "Residencial.GastosAPI\\Models\\Pessoa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-15T19:03:35.599Z"
+              "WhenOpened": "2025-12-15T20:05:17.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Residencial.GastosAPI\\Context\\AppDbContext.cs",
+              "ToolTip": "D:\\Estudos\\Controle de gastos\\Residencial.GastosAPI\\Residencial.GastosAPI\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "Residencial.GastosAPI\\Context\\AppDbContext.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwDMAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T19:56:11.343Z",
+              "EditorCaption": ""
             }
           ]
         }
