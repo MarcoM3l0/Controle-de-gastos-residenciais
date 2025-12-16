@@ -18,11 +18,16 @@ public class CategoriaRepository : ICategoriaRepository
         return await _context.Categorias.ToListAsync();
     }
 
+    public async Task<Categoria?> GetCategoriaById(int categoriaId)
+    {
+        return await _context.Categorias.Include(c => c.Transacoes)
+                                        .FirstOrDefaultAsync(c => c.CategoriaId == categoriaId);
+    }
+
     public async Task<Categoria> CreateCategoria(Categoria categoria)
     {
         _context.Categorias.Add(categoria);
         await _context.SaveChangesAsync();
         return categoria;
     }
-
 }
