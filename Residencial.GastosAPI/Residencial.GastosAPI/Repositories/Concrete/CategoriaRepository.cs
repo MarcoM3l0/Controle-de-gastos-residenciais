@@ -15,7 +15,7 @@ public class CategoriaRepository : ICategoriaRepository
     }
     public async Task<IEnumerable<Categoria>> GetAllCategorias()
     {
-        return await _context.Categorias.ToListAsync();
+        return await _context.Categorias.Include(c => c.Transacoes).ToListAsync();
     }
 
     public async Task<Categoria?> GetCategoriaById(int categoriaId)
