@@ -1,3 +1,24 @@
+/*
+ Sistema de Controle de Gastos Residenciais
+ --------------------------------------------------
+ Este sistema foi desenvolvido seguindo
+ regras de negócio específicas como:
+
+ - Pessoas menores de idade não podem registrar receitas;
+ - Categorias só podem ser usadas de acordo com sua finalidade;
+ - Ao excluir uma pessoa, todas as transações relacionadas a ela 
+   são removidas automaticamente (cascade delete).
+
+ A aplicação utiliza:
+ - ASP.NET Core Web API;
+ - Entity Framework Core;
+ - Repository Pattern;
+ - Service Layer;
+ - DTOs e AutoMapper;
+ - Middleware global para tratamento de erros.
+*/
+
+
 using Microsoft.EntityFrameworkCore;
 using Residencial.GastosAPI.Context;
 using Residencial.GastosAPI.DTOs.Mappings;

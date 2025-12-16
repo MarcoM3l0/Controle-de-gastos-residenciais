@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Residencial.GastosAPI.Models;
 
+/// <summary>
+/// Representa uma categoria de transação no sistema.
+/// Cada categoria pode estar associada a múltiplas transações.
+/// </summary>
 public class Categoria
 {
     [Key]

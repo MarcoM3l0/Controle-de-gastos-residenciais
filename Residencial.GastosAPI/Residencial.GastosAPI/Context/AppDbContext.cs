@@ -3,6 +3,10 @@ using Residencial.GastosAPI.Models;
 
 namespace Residencial.GastosAPI.Context;
 
+/// <summary>
+/// Classe de contexto do Entity Framework Core para a aplicação.
+/// Contém as definições das entidades e suas configurações.
+/// </summary>
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -17,7 +21,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-        // Configuração da entidade Pessoa
         modelBuilder.Entity<Pessoa>(pessoa =>
         {
             pessoa.HasKey(p => p.PessoaId);
@@ -31,21 +34,19 @@ public class AppDbContext : DbContext
                   .OnDelete(DeleteBehavior.Cascade);
         });
 
-        // Configuração da entidade Categoria
         modelBuilder.Entity<Categoria>(categoria =>
         {
             categoria.HasKey(c => c.CategoriaId);
             categoria.Property(c => c.Descricao).IsRequired().HasMaxLength(150);
-            categoria.Property(c => c.Finalidade).IsRequired().HasConversion<int>(); // Converte o enum para int no banco de dados
+            categoria.Property(c => c.Finalidade).IsRequired().HasConversion<int>(); 
         });
 
-        // Configuração da entidade Transacao
         modelBuilder.Entity<Transacao>(transacao =>
         {
             transacao.HasKey(t => t.TransacaoId);
             transacao.Property(t => t.Descricao).IsRequired().HasMaxLength(200);
             transacao.Property(t => t.Valor).IsRequired().HasPrecision(18, 2);
-            transacao.Property(t => t.Tipo).IsRequired().HasConversion<int>(); // Converte o enum para int no banco de dados
+            transacao.Property(t => t.Tipo).IsRequired().HasConversion<int>();
 
             transacao.HasOne(t => t.Categoria).WithMany(c => c.Transacoes).HasForeignKey(transacao => transacao.CategoriaId)
              .OnDelete(DeleteBehavior.Restrict);

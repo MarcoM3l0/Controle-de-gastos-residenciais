@@ -2,6 +2,10 @@
 
 namespace Residencial.GastosAPI.Models;
 
+/// <summary>
+/// Representa uma pessoa no sistema.
+/// Cada pessoa pode estar associada a múltiplas transações.
+/// </summary>
 public class Pessoa
 {
     [Key]

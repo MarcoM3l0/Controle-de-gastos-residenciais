@@ -6,6 +6,9 @@ using Residencial.GastosAPI.Services.Interfaces;
 
 namespace Residencial.GastosAPI.Services.Concrete;
 
+/// <summary>
+/// Serviço para gerenciar operações relacionadas a categorias.
+/// </summary>
 public class CategoriaService : ICategoriaService
 {
     private readonly ICategoriaRepository _categoriaRepository;
@@ -17,12 +20,23 @@ public class CategoriaService : ICategoriaService
         _mapper = mapper;
     }
 
+    /// <summary>
+    /// Retorna todas as categorias cadastradas.
+    /// Em seguida, mapeia as entidades para DTOs antes de retornar ao chamador.
+    /// </summary>
     public async Task<IEnumerable<CategoriaDto>> GetAllCategoriasAsync()
     {
         var categoriasEntities = await _categoriaRepository.GetAllCategorias();
         return _mapper.Map<IEnumerable<CategoriaDto>>(categoriasEntities);
     }
 
+    /// <summary>
+    /// Cria uma nova categoria após validar os dados fornecidos.
+    /// Caso o DTO fornecido seja nulo, lança uma exceção ArgumentNullException.
+    /// Em seguida, mapeia o DTO para a entidade e chama o repositório para persistir a nova categoria.
+    /// </summary>
+    /// <param name="categoriaDto"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public async Task CreateCategoriaAsync(CategoriaDto categoriaDto)
     {
         if(categoriaDto is null) 
@@ -33,6 +47,9 @@ public class CategoriaService : ICategoriaService
         categoriaDto.CategoriaId = categoriaEntity.CategoriaId;
     }
 
+    /// <summary>
+    /// Retorna os totais de receitas e despesas agrupados por categoria.
+    /// </summary>
     public async Task<TotalCategoriaResponseDto> GetTotalCategoriasAsync()
     {
         var categoriasEntities = await _categoriaRepository.GetAllCategorias();

@@ -2,6 +2,9 @@
 
 namespace Residencial.GastosAPI.Models.Errors;
 
+/// <summary>
+/// Representa os detalhes de um erro ocorrido na API.
+/// </summary>
 public class ErroDetails
 {
     public int StatusCode { get; set; }

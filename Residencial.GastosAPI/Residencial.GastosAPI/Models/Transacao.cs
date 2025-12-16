@@ -5,6 +5,11 @@ using System.Text.Json.Serialization;
 
 namespace Residencial.GastosAPI.Models;
 
+/// <summary>
+/// Representa uma transação financeira associada a uma pessoa e uma categoria.
+/// Esta vinculada a uma única pessoa e categoria.
+/// A configuração do relacionamento é feita na classe Pessoa e Categoria.
+/// </summary>
 public class Transacao
 {
     [Key]

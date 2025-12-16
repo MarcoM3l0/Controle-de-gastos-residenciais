@@ -3,6 +3,10 @@ using Residencial.GastosAPI.DTOs;
 using Residencial.GastosAPI.Services.Interfaces;
 
 namespace Residencial.GastosAPI.Controllers;
+
+/// <summary>
+/// Controller responsável por gerenciar categorias.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class CategoriasController : ControllerBase
@@ -14,6 +18,9 @@ public class CategoriasController : ControllerBase
         _categoriaService = categoriaService;
     }
 
+    /// <summary>
+    /// Retorna todas as categorias.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CategoriaDto>>> GetAllCategorias()
     {
@@ -21,6 +28,9 @@ public class CategoriasController : ControllerBase
         return Ok(categorias);
     }
 
+    /// <summary>
+    /// Retorna os totais por categoria.
+    /// </summary>
     [HttpGet("totais")]
     public async Task<ActionResult<TotalCategoriaResponseDto>> GetTotaisPorCategoria()
     {
@@ -28,6 +38,10 @@ public class CategoriasController : ControllerBase
         return Ok(totais);
     }
 
+    /// <summary>
+    /// Cria uma nova categoria.
+    /// </summary>
+    /// <param name="categoriaDto"></param>
     [HttpPost]
     public async Task<ActionResult> CreateCategoria([FromBody] CategoriaDto categoriaDto)
     {

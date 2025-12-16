@@ -3,6 +3,9 @@ using Residencial.GastosAPI.Models;
 
 namespace Residencial.GastosAPI.DTOs.Mappings;
 
+/// <summary>
+/// Responsável por configurar os mapeamentos entre entidades e DTOs usando AutoMapper.
+/// </summary>
 public class MappingProfile : Profile
 {
     public MappingProfile()

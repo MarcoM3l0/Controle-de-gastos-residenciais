@@ -4,6 +4,10 @@ using Residencial.GastosAPI.DTOs;
 using Residencial.GastosAPI.Services.Interfaces;
 
 namespace Residencial.GastosAPI.Controllers;
+
+/// <summary>
+/// Controller responsável por gerenciar operações relacionadas a pessoas.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class PessoasController : ControllerBase
@@ -15,6 +19,9 @@ public class PessoasController : ControllerBase
         _pessoaService = pessoaService;
     }
 
+    /// <summary>
+    /// Retorna todas as pessoas cadastradas.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<PessoaDto>>> GetAllPessoas()
     {
@@ -22,6 +29,9 @@ public class PessoasController : ControllerBase
         return Ok(pessoas);
     }
 
+    /// <summary>
+    /// Retorna os totais agrupados por pessoa.
+    /// </summary>
     [HttpGet("totais")]
     public async Task<ActionResult<IEnumerable<TotalPessoaResponseDto>>> GetPessoasTotais()
     {
@@ -29,6 +39,10 @@ public class PessoasController : ControllerBase
         return Ok(resultado);
     }
 
+    /// <summary>
+    /// Cria uma nova pessoa.
+    /// </summary>
+    /// <param name="pessoaDto"></param>
     [HttpPost]
     public async Task<ActionResult<PessoaDto>> CreatePessoa([FromBody] PessoaDto pessoaDto)
     {
@@ -36,6 +50,10 @@ public class PessoasController : ControllerBase
         return CreatedAtAction(nameof(GetAllPessoas), null);
     }
 
+    /// <summary>
+    /// Exclui uma pessoa pelo ID.
+    /// </summary>
+    /// <param name="pessoaId"></param>
     [HttpDelete("{pessoaId}")]
     public async Task<IActionResult> DeletePessoa(int pessoaId)
     {

@@ -4,6 +4,10 @@ using Residencial.GastosAPI.DTOs;
 using Residencial.GastosAPI.Services.Interfaces;
 
 namespace Residencial.GastosAPI.Controllers;
+
+/// <summary>
+/// Controller responsável por gerenciar transações financeiras.
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 public class TransacoesController : ControllerBase
@@ -15,6 +19,9 @@ public class TransacoesController : ControllerBase
         _transacaoService = transacaoService;
     }
 
+    /// <summary>
+    /// Retorna todas as transações financeiras.
+    /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacaoDto>>> GetAllTransacoes()
     {
@@ -22,6 +29,10 @@ public class TransacoesController : ControllerBase
         return Ok(transacoes);
     }
 
+    /// <summary>
+    /// Cria uma nova transação financeira.
+    /// </summary>
+    /// <param name="transacaoDto"></param>
     [HttpPost]
     public async Task<ActionResult> CreateTransacao([FromBody] TransacaoDto transacaoDto)
     {

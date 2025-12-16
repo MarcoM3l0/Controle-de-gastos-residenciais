@@ -7,6 +7,9 @@ using Residencial.GastosAPI.Services.Interfaces;
 
 namespace Residencial.GastosAPI.Services.Concrete;
 
+/// <summary>
+/// Serviço para gerenciar operações relacionadas a pessoas.
+/// </summary>
 public class PessoaService : IPessoaService
 {
     private readonly IPessoaRepository _pessoaRepository;
@@ -17,12 +20,20 @@ public class PessoaService : IPessoaService
         _pessoaRepository = pessoaRepository;
         _mapper = mapper;
     }
+
+    /// <summary>
+    /// Retorna todas as pessoas cadastradas.
+    /// Em seguida, mapeia as entidades para DTOs antes de retornar ao chamador.
+    /// </summary>
     public async Task<IEnumerable<PessoaDto>> GetAllPessoasAsync()
     {
         var pessoasEntities = await _pessoaRepository.GetAllPessoas();
         return _mapper.Map<IEnumerable<PessoaDto>>(pessoasEntities);
     }
 
+    /// <summary>
+    /// Retorna os totais de receitas e despesas agrupados por pessoa.
+    /// </summary>
     public async Task<TotalPessoaResponseDto> GetTotaisPorPessoaAsync()
     {
         var pessoasEntities = await _pessoaRepository.GetAllPessoas();
@@ -47,6 +58,15 @@ public class PessoaService : IPessoaService
         };
     }
 
+    /// <summary>
+    /// Cria uma nova pessoa após validar os dados fornecidos.
+    /// - Não permite idade negativa.
+    /// - Lança exceções apropriadas para dados inválidos.
+    /// Ao final, mapeia o DTO para a entidade e chama o repositório para persistir a nova pessoa.
+    /// </summary>
+    /// <param name="pessoaDto"></param>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="ArgumentException"></exception>
     public async Task CreatePessoaAsync(PessoaDto pessoaDto)
     {
         if(pessoaDto is null) 
@@ -59,6 +79,14 @@ public class PessoaService : IPessoaService
         pessoaDto.PessoaId = pessoaEntity.PessoaId;
     }
 
+    /// <summary>
+    /// Deleta uma pessoa pelo ID fornecido.
+    /// Caso o ID seja inválido ou a pessoa não exista, lança exceções apropriadas.
+    /// Ao final, chama o repositório para realizar a exclusão.
+    /// </summary>
+    /// <param name="pessoaId"></param>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="KeyNotFoundException"></exception>
     public async Task DeletePessoaAsync(int pessoaId)
     {
         if(pessoaId <= 0) 
