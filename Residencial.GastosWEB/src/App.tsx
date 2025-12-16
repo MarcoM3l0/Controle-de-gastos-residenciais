@@ -4,6 +4,7 @@ import PessoaModal from './Services/PessoaModal';
 import CategoriaModal from './Services/CategoriaModal';
 import Transacao from './Services/TransacaoModal';
 import { FinalidadeCategoria } from './enum/FinalidadeCategoria';
+import { Navigation } from './components/Navigation';
 import { useState } from 'react';
 
 const App: React.FC = () => {
@@ -11,6 +12,8 @@ const App: React.FC = () => {
   const [showPessoaModal, setShowPessoaModal] = useState(false);
   const [showCategoriaModal, setShowCategoriaModal] = useState(false);
   const [showTransacaoModal, setShowTransacaoModal] = useState(false);
+
+  const [activeTab, setActiveTab] = useState("transacoes");
 
   //  Simulando dados de pessoas e categorias que viriam do backend
     const pessoas = [
@@ -50,6 +53,9 @@ const App: React.FC = () => {
                 onCadastrarTransacao={() => setShowTransacaoModal(true)}
             />
             
+            <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
+           
+
             {/* Aqui vai o restante da aplicação */}
             <div className="container">
                 <p>Conteúdo principal aqui</p>
