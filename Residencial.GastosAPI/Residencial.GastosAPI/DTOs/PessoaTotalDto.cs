@@ -1,0 +1,12 @@
+﻿namespace Residencial.GastosAPI.DTOs;
+
+public class PessoaTotalDto
+{
+    public int PessoaId { get; set; }
+    public string? Nome { get; set; }
+
+    public decimal TotalReceitas { get; set; }
+    public decimal TotalDespesas { get; set; }
+
+    public decimal Saldo => TotalReceitas - TotalDespesas;
+}
