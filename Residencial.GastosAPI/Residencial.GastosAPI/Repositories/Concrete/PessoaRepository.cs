@@ -18,6 +18,12 @@ public class PessoaRepository : IPessoaRepository
         return await _context.Pessoas.ToListAsync();
     }
 
+    public async Task<Pessoa?> GetPessoaById(int id)
+    {
+        return await _context.Pessoas.Include(p => p.Transacoes)
+                                     .FirstOrDefaultAsync(p => p.PessoaId == id);
+    }
+
     public async Task<Pessoa> CreatePessoa(Pessoa pessoa)
     {
         _context.Pessoas.Add(pessoa);
@@ -32,11 +38,5 @@ public class PessoaRepository : IPessoaRepository
         _context.Pessoas.Remove(pessoa);
         await _context.SaveChangesAsync();
         return true;
-    }
-
-    private async Task<Pessoa?> GetPessoaById(int id)
-    {
-        return await _context.Pessoas.Include(p => p.Transacoes)
-                                     .FirstOrDefaultAsync(p => p.PessoaId == id);
     }
 }
