@@ -55,7 +55,7 @@ public class TransacaoService : ITransacaoService
             throw new ArgumentException("Menores de idade só podem adicionar despesas.", nameof(transacaoDto.Tipo));
 
         // Segunda regra de negócio: Só é permitido adicionar com a categoria compatível
-        if (categoriaExists.Finalidade != FinalidadeCategoria.Ambos &&
+        if (categoriaExists.Finalidade != FinalidadeCategoria.Ambas &&
             categoriaExists.Finalidade != (FinalidadeCategoria)transacaoDto.Tipo) 
             throw new ArgumentException("Categoria incompatível com o tipo da transação.", nameof(transacaoDto.CategoriaId));
 
