@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Residencial.GastosAPI.Context;
 using Residencial.GastosAPI.DTOs.Mappings;
+using Residencial.GastosAPI.Middlewares;
 using Residencial.GastosAPI.Repositories.Concrete;
 using Residencial.GastosAPI.Repositories.Interfaces;
 using Residencial.GastosAPI.Services.Concrete;
@@ -41,6 +42,8 @@ builder.Services.AddAutoMapper(cfg =>
 });
 
 var app = builder.Build();
+
+app.ConfigureExceptionHandler(); 
 
 if (app.Environment.IsDevelopment())
 {
