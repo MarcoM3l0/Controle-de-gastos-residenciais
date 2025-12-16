@@ -5,7 +5,7 @@ namespace Residencial.GastosAPI.Repositories.Interfaces;
 public interface IPessoaRepository
 {
     Task<IEnumerable<Pessoa>> GetAllPessoas();
-    Task<Pessoa?> GetPessoaById(int id);
+    Task<Pessoa?> GetPessoaById(int pessoaId);
     Task<Pessoa> CreatePessoa(Pessoa pessoa);
-    Task<bool> DeletePessoa(int id);
+    Task<bool> DeletePessoa(int pessoaId);
 }

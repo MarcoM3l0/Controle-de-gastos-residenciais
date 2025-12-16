@@ -18,10 +18,10 @@ public class PessoaRepository : IPessoaRepository
         return await _context.Pessoas.ToListAsync();
     }
 
-    public async Task<Pessoa?> GetPessoaById(int id)
+    public async Task<Pessoa?> GetPessoaById(int pessoaId)
     {
         return await _context.Pessoas.Include(p => p.Transacoes)
-                                     .FirstOrDefaultAsync(p => p.PessoaId == id);
+                                     .FirstOrDefaultAsync(p => p.PessoaId == pessoaId);
     }
 
     public async Task<Pessoa> CreatePessoa(Pessoa pessoa)
@@ -31,9 +31,9 @@ public class PessoaRepository : IPessoaRepository
         return pessoa;
     }
 
-    public async Task<bool> DeletePessoa(int id)
+    public async Task<bool> DeletePessoa(int pessoaId)
     {
-        var pessoa = await GetPessoaById(id) ?? throw new KeyNotFoundException();
+        var pessoa = await GetPessoaById(pessoaId) ?? throw new KeyNotFoundException();
 
         _context.Pessoas.Remove(pessoa);
         await _context.SaveChangesAsync();
