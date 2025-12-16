@@ -3,7 +3,7 @@ using Residencial.GastosAPI.Context;
 using Residencial.GastosAPI.Models;
 using Residencial.GastosAPI.Repositories.Interfaces;
 
-namespace Residencial.GastosAPI.Repositories;
+namespace Residencial.GastosAPI.Repositories.Concrete;
 
 public class PessoaRepository : IPessoaRepository
 {
