@@ -15,6 +15,7 @@ builder.Services.AddControllers()
     {
         opt.JsonSerializerOptions.Converters.Add(
             new JsonStringEnumConverter());
+        opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
