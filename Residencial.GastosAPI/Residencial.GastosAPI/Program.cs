@@ -62,8 +62,17 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddProfile<MappingProfile>();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Residencial.GastosWEB",
+        policy => policy.WithOrigins("http://localhost:5173")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
+app.UseCors("Residencial.GastosWEB");
 app.ConfigureExceptionHandler(); 
 
 if (app.Environment.IsDevelopment())
