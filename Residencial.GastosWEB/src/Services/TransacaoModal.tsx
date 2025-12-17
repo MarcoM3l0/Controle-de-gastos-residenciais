@@ -93,6 +93,8 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
                         <Form.Label>Pessoa</Form.Label>
                         <Form.Select value={pessoaId} onChange={(e) => setPessoaId(Number(e.target.value))}>
                             <option value="">Selecione...</option>
+
+                            {/* Mapeia as pessoas para gerar as opções dinamicamente */}
                             {pessoas.map((p) => (
                                 <option key={p.pessoaId} value={p.pessoaId}>{p.nome}</option>
                             ))}
@@ -103,6 +105,8 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
                         <Form.Label>Categoria</Form.Label>
                         <Form.Select value={categoriaId} onChange={(e) => setCategoriaId(Number(e.target.value))}>
                             <option value="">Selecione...</option>
+
+                            {/* Mapeia as categorias para gerar as opções dinamicamente */}
                             {categorias.map((c) => (
                                 <option key={c.categoriaId} value={c.categoriaId}>{c.descricao}</option>
                             ))}
@@ -110,9 +114,13 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
                     </Form.Group>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>Cancelar</Button>
-                <Button variant="warning" onClick={handleSave}>Salvar</Button>
+            <Modal.Footer className="border-0">
+                <Button variant="secondary" className="px-4" onClick={onClose}>
+                    Cancelar
+                </Button>
+                <Button variant="primary" className="px-4" onClick={handleSave}>
+                    Salvar
+                </Button>
             </Modal.Footer>
         </Modal>
     );

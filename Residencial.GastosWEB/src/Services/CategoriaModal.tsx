@@ -36,7 +36,7 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
     };
 
     return (
-        <Modal show={show} onHide={onClose} centered>
+        <Modal show={show} onHide={onClose}>
             <Modal.Header closeButton>
                 <Modal.Title className="h5 fw-bold">Cadastrar Categoria</Modal.Title>
             </Modal.Header>
@@ -69,11 +69,11 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
                 </Form>
             </Modal.Body>
             <Modal.Footer className="border-0">
-                <Button variant="link" className="text-decoration-none text-secondary" onClick={onClose}>
+                <Button variant="secondary" className="px-4" onClick={onClose}>
                     Cancelar
                 </Button>
                 <Button variant="primary" className="px-4" onClick={handleSave}>
-                    Salvar Categoria
+                    Salvar
                 </Button>
             </Modal.Footer>
         </Modal>

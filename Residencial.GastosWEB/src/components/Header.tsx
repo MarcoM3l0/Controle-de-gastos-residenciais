@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { GoPlus } from "react-icons/go";
+import { Plus } from "lucide-react"
 
 interface HeaderProps {
     onCadastrarPessoa: () => void;
@@ -17,9 +17,9 @@ const Header: React.FC<HeaderProps> = ({ onCadastrarPessoa, onCadastrarCategoria
 
                 {/* Botões */}
                 <div className="btn-toolbar m-3" role="group" aria-label="Cadastro Buttons">
-                    <button className="btn btn-primary me-1 fs-10" onClick={onCadastrarPessoa}><GoPlus className="me-1" />Cadastrar Pessoa</button>
-                    <button className="btn btn-primary me-1 fs-10" onClick={onCadastrarCategoria}><GoPlus className="me-1" />Cadastrar Categoria</button>
-                    <button className="btn btn-primary fs-10" onClick={onCadastrarTransacao}><GoPlus className="me-1" />Cadastrar Transação</button>
+                    <button className="btn btn-primary me-1 fs-10" onClick={onCadastrarPessoa}><Plus className="me-1" />Cadastrar Pessoa</button>
+                    <button className="btn btn-primary me-1 fs-10" onClick={onCadastrarCategoria}><Plus className="me-1" />Cadastrar Categoria</button>
+                    <button className="btn btn-primary fs-10" onClick={onCadastrarTransacao}><Plus className="me-1" />Cadastrar Transação</button>
                 </div>
             </div>
         </header>

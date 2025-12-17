@@ -43,10 +43,15 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                         />
                     </Form.Group>
                 </Form>
+                
             </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={onClose}>Cancelar</Button>
-                <Button variant="primary" onClick={handleSave}>Salvar</Button>
+               <Modal.Footer className="border-0">
+                    <Button variant="secondary" className="px-4" onClick={onClose}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" className="px-4" onClick={handleSave}>
+                        Salvar
+                    </Button>
             </Modal.Footer>
         </Modal>
     );

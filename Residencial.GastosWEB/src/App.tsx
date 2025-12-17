@@ -5,6 +5,7 @@ import CategoriaModal from './Services/CategoriaModal';
 import Transacao from './Services/TransacaoModal';
 import { FinalidadeCategoria } from './enum/FinalidadeCategoria';
 import { Navigation } from './components/Navigation';
+import { TabelaPessoa } from './components/TabelaPessoa';
 import { useState } from 'react';
 
 const App: React.FC = () => {
@@ -17,8 +18,8 @@ const App: React.FC = () => {
 
   //  Simulando dados de pessoas e categorias que viriam do backend
     const pessoas = [
-        { pessoaId: 2, nome: "João Silva" },
-        { pessoaId: 3, nome: "Ana Souza" }
+        { pessoaId: 2, nome: "João Silva", idade: 30, totalReceitas: 5000, totalDespesas: 3000 },
+        { pessoaId: 3, nome: "Ana Souza", idade: 25, totalReceitas: 4000, totalDespesas: 2500 }
     ];
 
     const categorias = [
@@ -55,10 +56,14 @@ const App: React.FC = () => {
             
             <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
            
-
-            {/* Aqui vai o restante da aplicação */}
-            <div className="container">
-                <p>Conteúdo principal aqui</p>
+           
+           <div className="container mt-4">
+                {activeTab === "transacoes" && <h4>Lista de Transações</h4>}
+                {activeTab === "pessoas" && 
+                <TabelaPessoa pessoas={pessoas} onDelete={(pessoaId) => {if (window.confirm("Tem certeza que deseja excluir esta pessoa?")) {
+                console.log("Excluir pessoa:", pessoaId);
+            }}} />}
+                {activeTab === "categorias" && <h4>Lista de Categorias</h4>}
             </div>
 
             <PessoaModal
