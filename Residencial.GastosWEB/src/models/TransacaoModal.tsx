@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import {TipoTransacao} from "../enum/TipoTransacao";
+import {TipoTransacao} from "../types/TipoTransacao";
 import type { Pessoa, Categoria } from "../types/tipos";
 
 interface TransacaoModalProps {

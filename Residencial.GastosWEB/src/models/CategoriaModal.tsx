@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { FinalidadeCategoria } from "../enum/FinalidadeCategoria";
+import { FinalidadeCategoria } from "../types/FinalidadeCategoria";
 
 // Extraímos os nomes das chaves ("Despesa" | "Receita" | "Ambas") para facilitar o uso no estado
 type FinalidadeKeys = keyof typeof FinalidadeCategoria;

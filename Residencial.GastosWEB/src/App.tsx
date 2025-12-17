@@ -3,7 +3,7 @@ import  Header  from './components/Header'
 import PessoaModal from './models/PessoaModal';
 import CategoriaModal from './models/CategoriaModal';
 import Transacao from './models/TransacaoModal';
-import { FinalidadeCategoria } from './enum/FinalidadeCategoria';
+import { FinalidadeCategoria } from './types/FinalidadeCategoria';
 import { Navigation } from './components/Navigation';
 import { TabelaPessoa } from './tables/TabelaPessoa';
 import { useState } from 'react';
