@@ -1,11 +1,11 @@
 import type React from 'react';
 import  Header  from './components/Header'
-import PessoaModal from './Services/PessoaModal';
-import CategoriaModal from './Services/CategoriaModal';
-import Transacao from './Services/TransacaoModal';
+import PessoaModal from './models/PessoaModal';
+import CategoriaModal from './models/CategoriaModal';
+import Transacao from './models/TransacaoModal';
 import { FinalidadeCategoria } from './enum/FinalidadeCategoria';
 import { Navigation } from './components/Navigation';
-import { TabelaPessoa } from './components/TabelaPessoa';
+import { TabelaPessoa } from './tables/TabelaPessoa';
 import { useState } from 'react';
 
 const App: React.FC = () => {

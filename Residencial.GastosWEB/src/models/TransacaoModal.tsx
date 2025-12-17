@@ -66,6 +66,7 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
                         <Form.Control
                             type="text"
                             value={descricao}
+                            placeholder="Ex: Alimentação, Aluguel..."
                             onChange={(e) => setDescricao(e.target.value)}
                         />
                     </Form.Group>

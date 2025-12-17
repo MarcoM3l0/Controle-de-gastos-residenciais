@@ -31,6 +31,7 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                         <Form.Control
                             type="text"
                             value={nome}
+                            placeholder="Ex: José da Silva"
                             onChange={(e) => setNome(e.target.value)}
                         />
                     </Form.Group>
