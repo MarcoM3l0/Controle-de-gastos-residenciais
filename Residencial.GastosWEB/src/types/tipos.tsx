@@ -1,3 +1,7 @@
+import { TipoTransacao } from "./TipoTransacao";
+
+type TipoTransacaoValues = typeof TipoTransacao[keyof typeof TipoTransacao]
+
 export interface Pessoa {
     pessoaId: number;
     nome: string;
@@ -9,4 +13,14 @@ export interface Pessoa {
 export interface Categoria {
     categoriaId: number;
     descricao: string;
+}
+
+export interface Transacao {
+    transacaoId: number;
+    nomePessoa: string;
+    idade: number;
+    categoria: string;
+    descricao: string;
+    valor: number;
+    tipo: TipoTransacaoValues;
 }
