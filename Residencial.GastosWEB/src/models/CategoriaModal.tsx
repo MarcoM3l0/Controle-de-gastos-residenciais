@@ -1,37 +1,29 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { FinalidadeCategoria } from "../types/FinalidadeCategoria";
-
-// Extraímos os nomes das chaves ("Despesa" | "Receita" | "Ambas") para facilitar o uso no estado
-type FinalidadeKeys = keyof typeof FinalidadeCategoria;
+import { createCategoria } from "../Services/categoriaService";
 
 interface CategoriaModalProps {
     show: boolean;
     onClose: () => void;
-    // O onSave deve enviar o valor numérico (1, 2 ou 3) que o backend espera
-    onSave: (descricao: string, finalidade: number) => void;
+    onSave: (descricao: string, finalidade: string) => void;
 }
 
 const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }) => {
     const [descricao, setDescricao] = useState("");
-    
-    // Inicializamos o estado com a chave "Despesa"
-    const [finalidadeKey, setFinalidadeKey] = useState<FinalidadeKeys>("Despesa");
+    const [finalidade, setFinalidade] = useState<"Despesa" | "Receita" | "Ambas">("Despesa");
 
-    const handleSave = () => {
-        if (descricao.trim() === "") {
-            alert("A descrição é obrigatória");
-            return;
-        }
+    const handleSave = async () => {
 
-        // Buscamos o valor numérico correspondente à chave selecionada
-        const valorNumerico = FinalidadeCategoria[finalidadeKey];
-        
-        onSave(descricao, valorNumerico);
-        
+        await createCategoria({
+            descricao,
+            finalidade
+        })
+
+        onSave(descricao, finalidade);
+
         // Limpa o estado após salvar
         setDescricao("");
-        setFinalidadeKey("Despesa");
+        setFinalidade("Despesa");
         onClose();
     };
 
@@ -55,15 +47,12 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
                     <Form.Group className="mb-3">
                         <Form.Label className="fw-semibold">Finalidade</Form.Label>
                         <Form.Select
-                            value={finalidadeKey}
-                            onChange={(e) => setFinalidadeKey(e.target.value as FinalidadeKeys)}
+                            value={finalidade}
+                            onChange={(e) => setFinalidade(e.target.value as "Despesa" | "Receita" | "Ambas")}
                         >
-                            {/* Mapeamos as chaves do objeto para gerar as opções dinamicamente */}
-                            {Object.keys(FinalidadeCategoria).map((key) => (
-                                <option key={key} value={key}>
-                                    {key}
-                                </option>
-                            ))}
+                            <option value="Despesa">Despesa</option>
+                            <option value="Receita">Receita</option>
+                            <option value="Ambas">Ambas</option>
                         </Form.Select>
                     </Form.Group>
                 </Form>

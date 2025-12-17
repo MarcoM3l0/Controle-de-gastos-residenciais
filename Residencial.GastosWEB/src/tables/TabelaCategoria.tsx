@@ -1,13 +1,6 @@
 import React from "react";
 import { Tag } from "lucide-react";
-
-export interface Categoria {
-    categoriaId: number;
-    descricao: string;
-    finalidade: string;
-    totalReceitas: number;
-    totalDespesas: number;
-}
+import type { CategoriaTabela as Categoria } from "../types/categoriaDTO";
 
 interface TabelaCategoriaProps {
     categorias: Categoria[];
@@ -32,6 +25,7 @@ export const TabelaCategoria: React.FC<TabelaCategoriaProps> = ({ categorias }) 
                             <th>Finalidade</th>
                             <th className="text-end">Total de Receitas</th>
                             <th className="text-end">Total de Despesas</th>
+                            <th className="text-end">Saldo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +53,10 @@ export const TabelaCategoria: React.FC<TabelaCategoriaProps> = ({ categorias }) 
 
                                 <td className="text-end text-danger fw-medium">
                                     {formatCurrency(categoria.totalDespesas)}
+                                </td>
+                                
+                                <td className={categoria.saldo >= 0 ? "text-end text-success fw-medium" : "text-end text-danger fw-medium"}>
+                                    {formatCurrency(categoria.saldo)}
                                 </td>
                             </tr>
                         ))}
