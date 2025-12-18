@@ -24,6 +24,10 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
             toastSucesso("Categoria cadastrada com sucesso!")
 
             onSave();
+
+            setDescricao("");
+            setFinalidade("Despesa");
+
             onClose();
 
         } catch (error: any) {

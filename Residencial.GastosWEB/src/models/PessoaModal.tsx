@@ -25,7 +25,11 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                 toastSucesso("Pessoa cadastrada com sucesso!")
 
                 onSave();
-                onClose()
+
+                setNome("");
+                setIdade("");
+
+                onClose();
             } else {
                 toastErro("A idade não pode está vazia!")
             }

@@ -51,7 +51,13 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
 
             onSave();
 
-            onClose()
+            setDescricao("");
+            setValor("");
+            setTipo("Despesa");
+            setPessoaId("");
+            setCategoriaId("");
+
+            onClose();
 
         } catch (error: any) {
             toastErro(
