@@ -1,5 +1,14 @@
 import React from "react";
 
+/*
+    Componente de loading padrão da aplicação.
+
+    Objetivo:
+    - Centralizar o feedback visual de carregamento
+
+    Observação:
+    - Apenas representação visual de estado "loading"
+*/
 export const LoadingPage: React.FC = () => {
     return (
         <div className="d-flex justify-content-center">
