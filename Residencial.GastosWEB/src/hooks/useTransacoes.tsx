@@ -10,7 +10,7 @@ export const useTransacoes = () => {
 
     const {pessoas} = usePessoas()
 
-    const [transacaes, setTransacoes] = useState<Transacao[]>([])
+    const [transacoes, setTransacoes] = useState<Transacao[]>([])
 
     const carregar = async (listaPessoa: Pessoa[]) => {
         try {
@@ -44,7 +44,7 @@ export const useTransacoes = () => {
     }, [])
 
     return {
-        transacaes,
+        transacoes,
         carregar
     }
 }
