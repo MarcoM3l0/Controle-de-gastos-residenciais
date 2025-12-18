@@ -16,6 +16,11 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
     const handleSave = async () => {
         try {
 
+            if (!descricao.trim()) {
+                toastErro("Descrição é obrigatória!");
+                return;
+            }
+
             await createCategoria({
                 descricao,
                 finalidade

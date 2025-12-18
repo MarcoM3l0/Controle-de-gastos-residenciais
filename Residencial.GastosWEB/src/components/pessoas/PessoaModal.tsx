@@ -16,7 +16,7 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
 
     const handleSave = async () => {
         try {
-            if (idade !== "") {
+            if (idade !== "" && nome.trim()) {
                 await createPessoa({
                     nome,
                     idade
@@ -30,8 +30,10 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                 setIdade("");
 
                 onClose();
-            } else {
-                toastErro("A idade não pode está vazia!")
+            } else if (!nome.trim()) {
+                toastErro("Nome é obrigatória!");
+            }else {
+                toastErro("Idade é obrigatória!")
             }
 
 
