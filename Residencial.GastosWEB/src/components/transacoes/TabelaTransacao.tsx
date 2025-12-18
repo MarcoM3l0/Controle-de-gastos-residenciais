@@ -1,11 +1,11 @@
 import React from "react";
 import { ArrowUpCircle, ArrowDownCircle, SquareX } from "lucide-react";
-import type { TransacaoTabela as Transacao } from "../types/transacaoDTO";
-import type { TotalGastosDTO as totalGastos } from "../types/pessoaDTO";
+import type { TransacaoTabela as Transacao } from "../../types/transacaoDTO";
+import type { TotalGastosDTO as totalGastos } from "../../types/pessoaDTO";
 
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
-import { SummaryCards } from './SummaryCards'
+import { SummaryCards } from '../common/SummaryCards'
 
 
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { TrendingUp, TrendingDown, Wallet } from "lucide-react";
 
-import type { TotalGastosDTO as totalGastos } from "../types/pessoaDTO";
+import type { TotalGastosDTO as totalGastos } from "../../types/pessoaDTO";
 
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface SummaryCardsProps {
     totalGastos: totalGastos | null;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { toastSucesso, toastErro } from "../utils/toast";
-import { createCategoria } from "../Services/categoriaService";
+import { toastSucesso, toastErro } from "../../utils/toast";
+import { createCategoria } from "../../Services/categoriaService";
 
 interface CategoriaModalProps {
     show: boolean;

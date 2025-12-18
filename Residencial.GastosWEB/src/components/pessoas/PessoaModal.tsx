@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { createPessoa } from "../Services/pessoaService";
+import { createPessoa } from "../../Services/pessoaService";
 
-import { toastSucesso, toastErro } from "../utils/toast";
+import { toastSucesso, toastErro } from "../../utils/toast";
 
 interface PessoaModalProps {
     show: boolean;

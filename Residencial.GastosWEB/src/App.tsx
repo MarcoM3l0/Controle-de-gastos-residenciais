@@ -6,16 +6,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { toastSucesso, toastErro } from './utils/toast';
 
-import Header from './components/Header'
-import { Navigation } from './components/Navigation';
+import Header from './components/common/Header'
+import { Navigation } from './components/common/Navigation';
 
-import PessoaModal from './models/PessoaModal';
-import CategoriaModal from './models/CategoriaModal';
-import TransacaoModal from './models/TransacaoModal';
+import PessoaModal from './components/pessoas/PessoaModal';
+import CategoriaModal from './components/categorias/CategoriaModal';
+import TransacaoModal from './components/transacoes/TransacaoModal';
 
-import { TabelaPessoa } from './tables/TabelaPessoa';
-import { TabelaTransacao } from './tables/TabelaTransacao';
-import { TabelaCategoria } from './tables/TabelaCategoria'
+import { TabelaPessoa } from './components/pessoas/TabelaPessoa';
+import { TabelaTransacao } from './components/transacoes/TabelaTransacao';
+import { TabelaCategoria } from './components/categorias/TabelaCategoria'
 
 import type { CategoriaTabela as Categoria } from './types/categoriaDTO';
 import type { PessoaTabela as Pessoa, TotalGastosDTO as TotalGastos } from './types/pessoaDTO';

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import { toastSucesso, toastErro } from "../utils/toast";
+import { toastSucesso, toastErro } from "../../utils/toast";
 
-import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
-import type { CategoriaTabela as Categoria } from "../types/categoriaDTO";
+import type { PessoaTabela as Pessoa } from "../../types/pessoaDTO";
+import type { CategoriaTabela as Categoria } from "../../types/categoriaDTO";
 
-import { CreateTransacao } from "../Services/transacaoService";
+import { CreateTransacao } from "../../Services/transacaoService";
 
 interface TransacaoModalProps {
     show: boolean;
