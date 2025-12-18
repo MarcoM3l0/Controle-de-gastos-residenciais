@@ -1,9 +1,11 @@
 import type React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
+import { usePessoas } from './hooks/usePessoas';
+import { useCategorias } from './hooks/useCategorias';
 
 import Header from './components/common/Header'
 import { Navigation } from './components/common/Navigation';
@@ -12,9 +14,9 @@ import PessoaModal from './components/pessoas/PessoaModal';
 import CategoriaModal from './components/categorias/CategoriaModal';
 import TransacaoModal from './components/transacoes/TransacaoModal';
 
-import { TabelaPessoa } from './components/pessoas/TabelaPessoa';
-import { TabelaTransacao } from './components/transacoes/TabelaTransacao';
-import { TabelaCategoria } from './components/categorias/TabelaCategoria'
+import { PessoasPage } from './pages/PessoasPage';
+import { CategoriasPage } from './pages/CategoriasPage';
+import { TransacoesPage } from './pages/TransacoesPage';
 
 
 
@@ -24,7 +26,8 @@ const App: React.FC = () => {
   const [showTransacaoModal, setShowTransacaoModal] = useState(false);
   const [activeTab, setActiveTab] = useState("transacoes");
 
-
+  const { pessoas } = usePessoas();
+  const { categorias } = useCategorias();
 
   const handleCadastrarPessoa = () => {
     setShowPessoaModal(false);
@@ -50,22 +53,15 @@ const App: React.FC = () => {
 
       <div className="container mt-4">
         {activeTab === "transacoes" &&
-          <TabelaTransacao transacaoes={transacaes} totalGastos={totalgastos} />
+          <TransacoesPage />
         }
 
         {activeTab === "pessoas" &&
-          <TabelaPessoa pessoas={pessoas} onDelete={(pessoaId) => {
-            if (window.confirm("Tem certeza que deseja excluir esta pessoa?")) {
-              handleDeletarPessoa(pessoaId)
-              carregarDadosIniciais();
-            }
-          }
-          }
-          />
+          <PessoasPage />
         }
 
         {activeTab === "categorias" &&
-          < TabelaCategoria categorias={categorias} />
+          <CategoriasPage />
         }
       </div>
 
