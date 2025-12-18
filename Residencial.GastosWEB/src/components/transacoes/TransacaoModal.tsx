@@ -7,6 +7,14 @@ import type { CategoriaTabela as Categoria } from "../../types/categoriaDTO";
 
 import { CreateTransacao } from "../../Services/transacaoService";
 
+/*
+    Propiedades esperadas pelo modal
+    - show: controla a visibilidade do modal
+    - onClose: função para fechar o modal
+    - onSave: executado após salvar com sucesso 
+    - pessoas: lista de pessoas cadastradas
+    - categorias: lista de categorias cadastradas
+*/
 interface TransacaoModalProps {
     show: boolean;
     onClose: () => void;
@@ -15,13 +23,30 @@ interface TransacaoModalProps {
     categorias: Categoria[];
 }
 
+/*
+    Modal responsável pelo cadastro de novas transações.
+
+    Regras de negócios:
+    - Campos obrigatórios (descrição, valor, pessoa e categoria)
+    - Valor deve ser maior que zero
+
+    As validações mais complexas ficam no backend.
+*/
 const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, pessoas, categorias }) => {
+
+    // Estados locais do formulário
     const [descricao, setDescricao] = useState("");
     const [valor, setValor] = useState<number | "">("");
     const [tipo, setTipo] = useState<"Despesa" | "Receita">("Despesa");
     const [pessoaId, setPessoaId] = useState<number | "">("");
     const [categoriaId, setCategoriaId] = useState<number | "">("");
 
+    /*
+        Função responsável por salvar a Transação.
+        - Valida campos obrigatórios
+        - Chama o service que se comunica com a API
+        - Exibe feedback visual (toast)
+    */
     const handleSave = async () => {
         try {
 

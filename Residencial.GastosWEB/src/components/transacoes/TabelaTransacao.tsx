@@ -4,16 +4,23 @@ import type { TransacaoTabela as Transacao } from "../../types/transacaoDTO";
 import type { TotalGastosDTO as totalGastos } from "../../types/pessoaDTO";
 
 import { formatCurrency } from "../../utils/formatCurrency";
-
 import { SummaryCards } from '../common/SummaryCards'
 
-
-
+/*
+    Propriedades da tabela de transações.
+    - transacoes: lista de transações retornadas pela API
+    - totalGastos: objeto com totais gerais (receitas, despesas e saldo)
+*/
 interface TabelaTransacaoProps {
     transacoes: Transacao[];
     totalGastos: totalGastos | null;
 }
 
+/*
+    Componente responsável por exibir a listagem de transações 
+    e o resumo financeiro geral (cards de totais).
+    Não contém regras de negócio, apenas apresentação dos dados.
+*/
 export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacoes: transacoes, totalGastos }) => {
 
     return (
