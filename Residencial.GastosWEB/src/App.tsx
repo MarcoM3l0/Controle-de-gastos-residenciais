@@ -158,14 +158,14 @@ const App: React.FC = () => {
   const handleDeletarPessoa = async (pessoaId: number) => {
     try {
 
-      deletePessoa(pessoaId);
-      toastSucesso("Pessoas e transações associadas foram removidas com sucesso!")
+      await deletePessoa(pessoaId);
+      toastSucesso("Pessoas e transações associadas foram removidas com sucesso!");
       carregarDadosIniciais();
 
     } catch (error: any) {
       toastErro(
-         error?.response?.data?.message ||
-            "Erro ao excluir pessoa"
+        error?.response?.data?.message ||
+        "Erro ao excluir pessoa"
       )
     }
   }
@@ -197,8 +197,10 @@ const App: React.FC = () => {
 
         {activeTab === "pessoas" &&
           <TabelaPessoa pessoas={pessoas} onDelete={(pessoaId) => {
-            if (window.confirm("Tem certeza que deseja excluir esta pessoa?"))
+            if (window.confirm("Tem certeza que deseja excluir esta pessoa?")) {
               handleDeletarPessoa(pessoaId)
+              carregarDadosIniciais();
+            }
           }
           }
           />
