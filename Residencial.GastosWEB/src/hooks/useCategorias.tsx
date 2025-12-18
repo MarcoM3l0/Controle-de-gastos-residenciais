@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useLoading } from './useLoading';
 import type { CategoriaTabela as Categoria } from '../types/categoriaDTO';
 
 import { getAllCategorias, getTotaisPorCategoria } from '../Services/categoriaService';
 
 export const useCategorias = () => {
+    const { loading, setLoading } = useLoading(false);
 
     const [categorias, setCategorias] = useState<Categoria[]>([])
 
     const carregar = async () => {
+        setLoading(true);
+
         try {
 
             const [responseCategoria, responseCategoriaTotais] = await Promise.all([
@@ -33,6 +37,8 @@ export const useCategorias = () => {
 
         } catch (error) {
             console.error("Erro ao cruzar dados de categorias:", error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -42,6 +48,7 @@ export const useCategorias = () => {
 
     return {
         categorias,
-        carregar
+        carregar,
+        loading
     }
 }

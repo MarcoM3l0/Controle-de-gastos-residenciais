@@ -5,14 +5,17 @@ import type { PessoaTabela as Pessoa } from '../types/pessoaDTO';
 import type { TransacaoTabela as Transacao } from '../types/transacaoDTO';
 
 import { usePessoas } from './usePessoas';
+import { useLoading } from './useLoading';
 
 export const useTransacoes = () => {
 
     const {pessoas} = usePessoas()
+    const { loading, setLoading } = useLoading(false);
 
     const [transacoes, setTransacoes] = useState<Transacao[]>([])
 
     const carregar = async (listaPessoa: Pessoa[]) => {
+        setLoading(true);
         try {
 
             const responseTransacao = await getAllTransacoes()
@@ -36,6 +39,8 @@ export const useTransacoes = () => {
 
         } catch (error) {
             console.log(error)
+        } finally{
+            setLoading(false);
         }
     }
 
@@ -45,6 +50,7 @@ export const useTransacoes = () => {
 
     return {
         transacoes,
-        carregar
+        carregar,
+        loading
     }
 }

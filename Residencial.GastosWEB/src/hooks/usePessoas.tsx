@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useLoading } from "./useLoading";
 
 import { toastSucesso, toastErro } from '../utils/toast';
 import { deletePessoa, getAllPessoas, getPessoasTotais } from '../Services/pessoaService';
@@ -8,7 +9,11 @@ export const usePessoas = () => {
     const [pessoas, setPessoas] = useState<Pessoa[]>([])
     const [totalGastos, setTotalGastos] = useState<TotalGastos | null>(null)
 
+    const { loading, setLoading } = useLoading(false);
+
     const handleDeletarPessoa = async (pessoaId: number) => {
+
+        setLoading(true);
         try {
 
             await deletePessoa(pessoaId);
@@ -20,6 +25,8 @@ export const usePessoas = () => {
                 error?.response?.data?.message ||
                 "Erro ao excluir pessoa"
             )
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -72,6 +79,7 @@ export const usePessoas = () => {
         pessoas,
         totalGastos,
         handleDeletarPessoa,
-        carregar
+        carregar,
+        loading
     }
 }
