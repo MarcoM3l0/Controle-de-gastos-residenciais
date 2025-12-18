@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { createPessoa } from "../Services/pessoaService";
 
 interface PessoaModalProps {
     show: boolean;
@@ -11,11 +12,18 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
     const [nome, setNome] = useState("");
     const [idade, setIdade] = useState<number | "">("");
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (nome && idade !== "") {
+
+            await createPessoa({
+                nome,
+                idade
+            })
+
             onSave(nome, Number(idade));
             setNome("");
             setIdade("");
+            onClose()
         }
     };
 
@@ -44,15 +52,15 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                         />
                     </Form.Group>
                 </Form>
-                
+
             </Modal.Body>
-               <Modal.Footer className="border-0">
-                    <Button variant="secondary" className="px-4" onClick={onClose}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" className="px-4" onClick={handleSave}>
-                        Salvar
-                    </Button>
+            <Modal.Footer className="border-0">
+                <Button variant="secondary" className="px-4" onClick={onClose}>
+                    Cancelar
+                </Button>
+                <Button variant="primary" className="px-4" onClick={handleSave}>
+                    Salvar
+                </Button>
             </Modal.Footer>
         </Modal>
     );

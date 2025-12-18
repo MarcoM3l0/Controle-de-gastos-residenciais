@@ -1,6 +1,6 @@
 import React from "react";
 import { Trash2, AlertTriangle, SquareX } from "lucide-react";
-import type { Pessoa } from "../types/tipos";
+import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
 
 interface TabelaPessoaProps {
     pessoas: Pessoa[];
