@@ -17,9 +17,9 @@ export const TabelaCategoria: React.FC<TabelaCategoriaProps> = ({ categorias }) 
 
     return (
         <div className="card shadow-sm">
-            <div className="table-responsive">
+            <div className="table-responsive" style={{ maxHeight: '600px', overflowY: 'auto' }}>
                 <table className="table table-hover align-middle mb-0">
-                    <thead className="table-light">
+                    <thead className="table-light sticky-top">
                         <tr>
                             <th>Descrição da Categoria</th>
                             <th>Finalidade</th>
