@@ -1,14 +1,22 @@
 import React from "react";
 import { Trash2, AlertTriangle, SquareX } from "lucide-react";
 import type { PessoaTabela as Pessoa } from "../../types/pessoaDTO";
-
 import { formatCurrency } from "../../utils/formatCurrency";
 
+/*
+    Propriedades da tabela de categorias.
+    - Recebe uma lista de categorias já processadas
+    - onDelete: função para excluir uma pessoa
+*/
 interface TabelaPessoaProps {
     pessoas: Pessoa[];
     onDelete: (id: number) => void;
 }
 
+/*
+    Componente responsável por exibir a listagem de pessoas
+    Não contém regras de negócio, apenas apresentação dos dados.
+*/
 export const TabelaPessoa: React.FC<TabelaPessoaProps> = ({ pessoas: pessoa, onDelete }) => {
 
     return (

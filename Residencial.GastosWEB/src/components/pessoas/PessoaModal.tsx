@@ -1,22 +1,47 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { createPessoa } from "../../Services/pessoaService";
-
 import { toastSucesso, toastErro } from "../../utils/toast";
 
+/*
+    Propiedades esperadas pelo modal
+    - show: controla a visibilidade do modal
+    - onClose: função para fechar o modal
+    - onSave: executado após salvar com sucesso 
+*/
 interface PessoaModalProps {
     show: boolean;
     onClose: () => void;
     onSave: () => void;
 }
 
+/*
+    Modal responsável pelo cadastro de novas pessoas.
+
+    Regras de negócios:
+    - Nome é obrigatório
+    - Idade é obrigatória
+
+    As validações mais complexas ficam no backend.
+*/
 const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
+
+    // Estado para armazenar o nome da pessoa
     const [nome, setNome] = useState("");
+
+    // Estado para armazenar a idade
     const [idade, setIdade] = useState<number | "">("");
 
+     /*
+        Função responsável por salvar a pessoa.
+        - Valida campos obrigatórios
+        - Chama o service que se comunica com a API
+        - Exibe feedback visual (toast)
+    */
     const handleSave = async () => {
         try {
             if (idade !== "" && nome.trim()) {
+                
                 await createPessoa({
                     nome,
                     idade
