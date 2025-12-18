@@ -24,6 +24,12 @@ export interface PessoaTotaisResponseDTO {
     saldoGeral: number
 }
 
+export interface TotalGastosDTO {
+    totalReceitasGeral: number
+    totalDespesasGeral: number
+    saldoGeral: number
+}
+
 export interface PessoaTabela {
     pessoaId: number;
     nome: string;

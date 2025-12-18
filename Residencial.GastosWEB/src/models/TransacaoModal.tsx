@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
-import {TipoTransacao} from "../types/TipoTransacao";
-import type { Pessoa, Categoria } from "../types/tipos";
+import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
+import type { CategoriaTabela as Categoria } from "../types/categoriaDTO";
+
+import { CreateTransacao } from "../Services/transacaoService";
 
 interface TransacaoModalProps {
     show: boolean;
@@ -9,7 +11,7 @@ interface TransacaoModalProps {
     onSave: (transacao: {
         descricao: string;
         valor: number;
-        tipo: number;
+        tipo: string;
         pessoaId: number;
         categoriaId: number;
     }) => void;
@@ -20,11 +22,11 @@ interface TransacaoModalProps {
 const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, pessoas, categorias }) => {
     const [descricao, setDescricao] = useState("");
     const [valor, setValor] = useState<number | "">("");
-    const [tipo, setTipo] = useState<number>(TipoTransacao.Despesa);
+    const [tipo, setTipo] = useState<"Despesa" | "Receita">("Despesa");
     const [pessoaId, setPessoaId] = useState<number | "">("");
     const [categoriaId, setCategoriaId] = useState<number | "">("");
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (!descricao.trim()) {
             alert("Descrição é obrigatória!");
             return;
@@ -38,6 +40,14 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
             return;
         }
 
+        await CreateTransacao({
+            descricao,
+            valor,
+            tipo,
+            pessoaId,
+            categoriaId
+        })
+
         onSave({
             descricao,
             valor: Number(valor),
@@ -49,7 +59,7 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
         // Resetar campos
         setDescricao("");
         setValor("");
-        setTipo(TipoTransacao.Despesa);
+        setTipo("Despesa");
         setPessoaId("");
         setCategoriaId("");
     };
@@ -84,9 +94,9 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
 
                     <Form.Group className="mb-3">
                         <Form.Label>Tipo</Form.Label>
-                        <Form.Select value={tipo} onChange={(e) => setTipo(Number(e.target.value))}>
-                            <option value={TipoTransacao.Despesa}>Despesa</option>
-                            <option value={TipoTransacao.Receita}>Receita</option>
+                        <Form.Select value={tipo} onChange={(e) => setTipo(e.target.value as "Despesa" | "Receita")}>
+                            <option value="Despesa">Despesa</option>
+                            <option value="Receita">Receita</option>
                         </Form.Select>
                     </Form.Group>
 

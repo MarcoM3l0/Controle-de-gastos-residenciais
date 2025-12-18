@@ -1,18 +1,25 @@
 import type React from 'react';
+
 import Header from './components/Header'
+import { Navigation } from './components/Navigation';
+
 import PessoaModal from './models/PessoaModal';
 import CategoriaModal from './models/CategoriaModal';
-import Transacao from './models/TransacaoModal';
-import { Navigation } from './components/Navigation';
+import TransacaoModal from './models/TransacaoModal';
+
 import { TabelaPessoa } from './tables/TabelaPessoa';
 import { TabelaTransacao } from './tables/TabelaTransacao';
 import { TabelaCategoria } from './tables/TabelaCategoria'
+
 import type { CategoriaTabela as Categoria } from './types/categoriaDTO';
-import type { PessoaTabela as Pessoa } from './types/pessoaDTO';
+import type { PessoaTabela as Pessoa, TotalGastosDTO as TotalGastos } from './types/pessoaDTO';
+import type { TransacaoTabela as Transacao } from './types/transacaoDTO';
+
 import { useEffect, useState } from 'react';
-import { TipoTransacao } from './types/TipoTransacao';
+
 import { getAllCategorias, getTotaisPorCategoria } from './Services/categoriaService';
 import { deletePessoa, getAllPessoas, getPessoasTotais } from './Services/pessoaService';
+import { getAllTransacoes } from './Services/transacaoService';
 
 const App: React.FC = () => {
   const [showPessoaModal, setShowPessoaModal] = useState(false);
@@ -21,19 +28,22 @@ const App: React.FC = () => {
 
   const [categorias, setCategorias] = useState<Categoria[]>([])
   const [pessoas, setPessoas] = useState<Pessoa[]>([])
+  const [transacaes, setTransacoes] = useState<Transacao[]>([])
+
+  const [totalgastos, setTotalGastos] = useState<TotalGastos | null>(null)
 
   const [activeTab, setActiveTab] = useState("transacoes");
 
   useEffect(() => {
-    carregarPessoas()
-    carregarCategorias()
+    carregarDadosIniciais()
   }, [])
 
 
-  //  Simulando dados de pessoas e categorias que viriam do backend
-  const transacao = [
-    { transacaoId: 1, nomePessoa: "João da silva", idade: 30, categoria: "Alimentação", descricao: "Supermercado", valor: 258, tipo: TipoTransacao.Despesa }
-  ]
+  const carregarDadosIniciais = async () => {
+    const listarPessoaCarregada = await carregarPessoas()
+    await carregarCategorias()
+    carregarTransacoes(listarPessoaCarregada)
+  }
 
   const carregarCategorias = async () => {
     try {
@@ -85,34 +95,77 @@ const App: React.FC = () => {
           saldo: receitaDespesa?.saldo || 0
         }
       })
+
+      const dadosValoresGerais = responsePessoaTotais.data
+
+      const listaTotalGasto: TotalGastos = {
+        totalReceitasGeral: dadosValoresGerais.totalReceitasGeral,
+        totalDespesasGeral: dadosValoresGerais.totalDespesasGeral,
+        saldoGeral: dadosValoresGerais.saldoGeral
+      }
+
       setPessoas(listaPessoa)
+      setTotalGastos(listaTotalGasto)
+      return listaPessoa
+
     } catch (error) {
       console.log("Erro ao cruzar dados de pessoas:", error)
+      return []
     }
   }
-  
+
+  const carregarTransacoes = async (listaPessoa: Pessoa[]) => {
+    try {
+
+      const responseTransacao = await getAllTransacoes()
+
+      const listaTransacao: Transacao[] = responseTransacao.data.map((t) => {
+        const pessoaRelacionada = listaPessoa.find(
+          (pr) => pr.pessoaId === t.pessoaId)
+        console.log("pessao")
+        console.log(pessoaRelacionada?.idade)
+        return {
+          transacaoId: t.transacaoId,
+          pessoaNome: t.pessoaNome,
+          idade: pessoaRelacionada?.idade || 0,
+          categoriaDescricao: t.categoriaDescricao,
+          descricao: t.descricao,
+          valor: t.valor,
+          tipo: t.tipo
+        }
+      })
+
+      console.log("Apos")
+      console.log(listaTransacao)
+
+      setTransacoes(listaTransacao)
+
+    } catch (error) {
+
+    }
+  }
+
 
   const handleCadastrarPessoa = (nome: string, idade: number) => {
     alert(`Pessoa salva: ${nome}, ${idade} anos`);
-    carregarPessoas()
+    carregarDadosIniciais()
     setShowPessoaModal(false);
   };
 
   const handleDeletarPessoa = async (pessoaId: number) => {
     deletePessoa(pessoaId);
-    carregarPessoas();
+    carregarDadosIniciais();
   }
 
   const handleCadastrarCategoria = (descricao: string, finalidade: string) => {
     alert(`Categoria salva: ${descricao} (${finalidade})`);
-    carregarCategorias()
+    carregarDadosIniciais()
     setShowCategoriaModal(false);
   };
 
   const handleCadastrarTransacao = (transacao: any) => {
-    alert(`Transação salva: ${transacao.descricao}, Valor: ${transacao.valor}, Tipo: ${transacao.tipo}, Pessoa ID: ${transacao.pessoaId}, Categoria ID: ${transacao.categoriaId}`);
-    carregarPessoas()
-    carregarCategorias()
+    alert(`Transação salva: ${transacao.descricao}`);
+    carregarDadosIniciais()
     setShowTransacaoModal(false);
   };
 
@@ -128,7 +181,7 @@ const App: React.FC = () => {
 
       <div className="container mt-4">
         {activeTab === "transacoes" &&
-          <TabelaTransacao transacaoes={transacao} />
+          <TabelaTransacao transacaoes={transacaes} totalGastos={totalgastos}/>
         }
 
         {activeTab === "pessoas" &&
@@ -155,7 +208,7 @@ const App: React.FC = () => {
         onClose={() => setShowCategoriaModal(false)}
         onSave={handleCadastrarCategoria}
       />
-      <Transacao
+      <TransacaoModal
         show={showTransacaoModal}
         onClose={() => setShowTransacaoModal(false)}
         onSave={handleCadastrarTransacao}

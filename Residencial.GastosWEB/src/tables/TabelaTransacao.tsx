@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowUpCircle, ArrowDownCircle, SquareX } from "lucide-react";
-import type { Transacao } from "../types/tipos"
-import { TipoTransacao } from "../types/TipoTransacao";
+import type { TransacaoTabela as Transacao } from "../types/transacaoDTO";
+import type { TotalGastosDTO as totalGastos } from "../types/pessoaDTO";
 
 import { SummaryCards } from './SummaryCards'
 
@@ -9,9 +9,10 @@ import { SummaryCards } from './SummaryCards'
 
 interface TabelaTransacaoProps {
     transacaoes: Transacao[];
+    totalGastos: totalGastos | null;
 }
 
-export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes }) => {
+export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes, totalGastos }) => {
 
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat("pt-BR", {
@@ -23,6 +24,7 @@ export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes })
     return (
         <div >
             <div className="card shadow-sm">
+                
                 {/* Tabela */}
                 <div className="table-responsive">
                     <table className="table table-hover align-middle mb-0">
@@ -39,15 +41,15 @@ export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes })
                         <tbody>
                             {transacaoes.map((transacao) => (
                                 <tr key={transacao.transacaoId}>
-                                    <td>{transacao.nomePessoa}</td>
+                                    <td>{transacao.pessoaNome}</td>
                                     <td>{transacao.idade}</td>
-                                    <td>{transacao.categoria}</td>
+                                    <td>{transacao.categoriaDescricao}</td>
                                     <td>{transacao.descricao}</td>
                                     <td className="text-end fw-semibold">
                                         {formatCurrency(transacao.valor)}
                                     </td>
                                     <td className="text-center">
-                                        {transacao.tipo === TipoTransacao.Receita ? (
+                                        {transacao.tipo === "Receita" ? (
                                             <span className="badge bg-success d-inline-flex align-items-center gap-1">
                                                 <ArrowUpCircle size={20} />
                                                 Receita
@@ -76,8 +78,7 @@ export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes })
 
             <div className="mt-4">
                 <SummaryCards
-                    totalReceitas={9000}
-                    totalDespesas={5500}
+                    totalGastos={totalGastos}
                 />
             </div>
         </div>
