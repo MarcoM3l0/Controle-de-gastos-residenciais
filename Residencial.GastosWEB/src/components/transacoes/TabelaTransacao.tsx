@@ -10,11 +10,11 @@ import { SummaryCards } from '../common/SummaryCards'
 
 
 interface TabelaTransacaoProps {
-    transacaoes: Transacao[];
+    transacoes: Transacao[];
     totalGastos: totalGastos | null;
 }
 
-export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes, totalGastos }) => {
+export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacoes: transacoes, totalGastos }) => {
 
     return (
         <div >
@@ -34,7 +34,7 @@ export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes, t
                             </tr>
                         </thead>
                         <tbody>
-                            {transacaoes.map((transacao) => (
+                            {transacoes.map((transacao) => (
                                 <tr key={transacao.transacaoId}>
                                     <td>{transacao.pessoaNome}</td>
                                     <td>{transacao.idade}</td>
@@ -59,7 +59,7 @@ export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes, t
                                 </tr>
                             ))}
 
-                            {transacaoes.length === 0 && (
+                            {transacoes.length === 0 && (
                                 <tr>
                                     <td colSpan={6} className="text-center text-muted py-4">
                                         <SquareX /> Nenhuma transação cadastrada
