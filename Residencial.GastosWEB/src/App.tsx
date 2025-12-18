@@ -25,21 +25,27 @@ const App: React.FC = () => {
   const [showCategoriaModal, setShowCategoriaModal] = useState(false);
   const [showTransacaoModal, setShowTransacaoModal] = useState(false);
   const [activeTab, setActiveTab] = useState("transacoes");
+  const [refresh, setRefresh] = useState(0);
 
   const { pessoas } = usePessoas();
   const { categorias } = useCategorias();
 
   const handleCadastrarPessoa = () => {
+    refreshPages();
     setShowPessoaModal(false);
   };
 
   const handleCadastrarCategoria = () => {
+    refreshPages();
     setShowCategoriaModal(false);
   };
 
   const handleCadastrarTransacao = () => {
+    refreshPages();
     setShowTransacaoModal(false);
   };
+
+  const refreshPages = () => setRefresh(r => (r === 0 ? 1 : 0))
 
   return (
     <div>
@@ -53,15 +59,15 @@ const App: React.FC = () => {
 
       <div className="container mt-4">
         {activeTab === "transacoes" &&
-          <TransacoesPage />
+          <TransacoesPage key={refresh}/>
         }
 
         {activeTab === "pessoas" &&
-          <PessoasPage />
+          <PessoasPage key={refresh}/>
         }
 
         {activeTab === "categorias" &&
-          <CategoriasPage />
+          <CategoriasPage key={refresh}/>
         }
       </div>
 
