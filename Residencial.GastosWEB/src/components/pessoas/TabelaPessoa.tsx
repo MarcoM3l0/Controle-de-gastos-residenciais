@@ -15,7 +15,7 @@ interface TabelaPessoaProps {
 
 /*
     Componente responsável por exibir a listagem de pessoas
-    Não contém regras de negócio, apenas apresentação dos dados.
+    Não contém regras de negócio, apenas apresentação dos dados. 
 */
 export const TabelaPessoa: React.FC<TabelaPessoaProps> = ({ pessoas: pessoa, onDelete }) => {
 

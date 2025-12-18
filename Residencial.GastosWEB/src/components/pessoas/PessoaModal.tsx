@@ -4,7 +4,7 @@ import { createPessoa } from "../../Services/pessoaService";
 import { toastSucesso, toastErro } from "../../utils/toast";
 
 /*
-    Propiedades esperadas pelo modal
+    Propiedades esperadas pelo modal 
     - show: controla a visibilidade do modal
     - onClose: função para fechar o modal
     - onSave: executado após salvar com sucesso 
@@ -41,7 +41,7 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
     const handleSave = async () => {
         try {
             if (idade !== "" && nome.trim()) {
-                
+
                 await createPessoa({
                     nome,
                     idade
