@@ -5,12 +5,28 @@ import type { TotalGastosDTO as totalGastos } from "../../types/pessoaDTO";
 
 import { formatCurrency } from "../../utils/formatCurrency";
 
+/*
+    Propriedades esperadas SummaryCards.
+    - totalGastos: objeto retornado pela API contendo os totais gerais
+*/
 interface SummaryCardsProps {
     totalGastos: totalGastos | null;
 }
 
+/*
+    Componente responsável por exibir o resumo geral.
+
+    Exibir:
+    - Total de receitas
+    - Total de despesas
+    - Saldo geral
+
+    Importante:
+    - Apenas apresenta os valores já agregados pelo backend
+*/
 export const SummaryCards: React.FC<SummaryCardsProps> = ({ totalGastos }) => {
 
+    // Valores padrão para evitar erros de renderização
     const Receitas = totalGastos?.totalReceitasGeral || 0;
     const Despesas = totalGastos?.totalDespesasGeral || 0;
     const Saldo = totalGastos?.saldoGeral || 0;

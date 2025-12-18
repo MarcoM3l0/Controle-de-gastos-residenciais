@@ -2,12 +2,27 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Plus } from "lucide-react"
 
+/*
+    Propriedades esperadas Header.
+    Cada callback é responsável por abrir o respectivo modal no componente pai.
+*/
 interface HeaderProps {
     onCadastrarPessoa: () => void;
     onCadastrarCategoria: () => void;
     onCadastrarTransacao: () => void;
 }
 
+/*
+    Componente de cabeçalho da aplicação.
+
+    Responsabilidades:
+    - Exibir o nome do sistema
+    - Disponibilizar ações principais de cadastro
+
+    Importante:
+    - Este componente NÃO controla estado
+    - Ele apenas dispara eventos para o componente pai
+*/
 const Header: React.FC<HeaderProps> = ({ onCadastrarPessoa, onCadastrarCategoria, onCadastrarTransacao }) => {
     return (
         <header className="bg-light p-3 mb-4 shadow-sm">
