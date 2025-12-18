@@ -4,14 +4,19 @@ import type { CategoriaTabela as Categoria } from "../../types/categoriaDTO";
 
 import { formatCurrency } from "../../utils/formatCurrency";
 
+/*
+    Propriedades da tabela de categorias.
+    Recebe uma lista de categorias já processadas
+*/
 interface TabelaCategoriaProps {
     categorias: Categoria[];
 }
 
+/*
+    Componente responsável por exibir a listagem de categorias
+    Não contém regras de negócio, apenas apresentação dos dados.
+*/
 export const TabelaCategoria: React.FC<TabelaCategoriaProps> = ({ categorias }) => {
-
-
-
     return (
         <div className="card shadow-sm">
             <div className="table-responsive" style={{ maxHeight: '600px', overflowY: 'auto' }}>

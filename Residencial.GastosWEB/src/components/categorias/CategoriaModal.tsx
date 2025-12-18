@@ -3,16 +3,43 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { toastSucesso, toastErro } from "../../utils/toast";
 import { createCategoria } from "../../Services/categoriaService";
 
+/*
+    Propiedades esperadas pelo modal
+    - show: controla a visibilidade do modal
+    - onClose: função para fechar o modal
+    - onSave: executado após salvar com sucesso 
+*/
 interface CategoriaModalProps {
     show: boolean;
     onClose: () => void;
     onSave: () => void;
 }
 
+
+/*
+    Modal responsável pelo cadastro de novas categorias.
+
+    Regras de negócios:
+    - A descrição é obrigatória
+    - A finalidade deve ser (Despesa, Receita ou Ambas)
+
+    As validações mais complexas ficam no backend.
+*/
 const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }) => {
+
+    // Estado local para armazenar a descrição da categoria
     const [descricao, setDescricao] = useState("");
+
+    // Estado local para armazenar a finalidade da categoria
     const [finalidade, setFinalidade] = useState<"Despesa" | "Receita" | "Ambas">("Despesa");
 
+
+    /*
+        Função responsável por salvar a categoria.
+        - Valida campos obrigatórios
+        - Chama o service que se comunica com a API
+        - Exibe feedback visual (toast)
+    */
     const handleSave = async () => {
         try {
 
