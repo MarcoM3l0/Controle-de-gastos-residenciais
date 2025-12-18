@@ -1,5 +1,5 @@
 import React from "react";
-import { Tag } from "lucide-react";
+import { Tag, SquareX } from "lucide-react";
 import type { CategoriaTabela as Categoria } from "../../types/categoriaDTO";
 
 import { formatCurrency } from "../../utils/formatCurrency";
@@ -57,6 +57,14 @@ export const TabelaCategoria: React.FC<TabelaCategoriaProps> = ({ categorias }) 
                                 </td>
                             </tr>
                         ))}
+
+                        {categorias.length === 0 && (
+                            <tr>
+                                <td colSpan={6} className="text-center text-muted py-4">
+                                    <SquareX /> Nenhuma categoria cadastrada
+                                </td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>
             </div>
