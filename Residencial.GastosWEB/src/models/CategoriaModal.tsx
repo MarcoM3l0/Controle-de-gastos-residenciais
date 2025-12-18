@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { toastSucesso, toastErro } from "../utils/toast";
 import { createCategoria } from "../Services/categoriaService";
 
 interface CategoriaModalProps {
     show: boolean;
     onClose: () => void;
-    onSave: (descricao: string, finalidade: string) => void;
+    onSave: () => void;
 }
 
 const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }) => {
@@ -13,18 +14,23 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
     const [finalidade, setFinalidade] = useState<"Despesa" | "Receita" | "Ambas">("Despesa");
 
     const handleSave = async () => {
+        try {
 
-        await createCategoria({
-            descricao,
-            finalidade
-        })
+            await createCategoria({
+                descricao,
+                finalidade
+            })
 
-        onSave(descricao, finalidade);
+            toastSucesso("Categoria cadastrada com sucesso!")
 
-        // Limpa o estado após salvar
-        setDescricao("");
-        setFinalidade("Despesa");
-        onClose();
+            onSave();
+            onClose();
+
+        } catch (error: any) {
+            toastErro(
+                error?.response?.data?.message || "Erro ao cadastrar Categoria"
+            )
+        }
     };
 
     return (

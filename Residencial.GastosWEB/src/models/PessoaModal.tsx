@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { createPessoa } from "../Services/pessoaService";
 
+import { toastSucesso, toastErro } from "../utils/toast";
+
 interface PessoaModalProps {
     show: boolean;
     onClose: () => void;
-    onSave: (nome: string, idade: number) => void;
+    onSave: () => void;
 }
 
 const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
@@ -13,17 +15,27 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
     const [idade, setIdade] = useState<number | "">("");
 
     const handleSave = async () => {
-        if (nome && idade !== "") {
+        try {
+            if (idade !== "") {
+                await createPessoa({
+                    nome,
+                    idade
+                })
 
-            await createPessoa({
-                nome,
-                idade
-            })
+                toastSucesso("Pessoa cadastrada com sucesso!")
 
-            onSave(nome, Number(idade));
-            setNome("");
-            setIdade("");
-            onClose()
+                onSave();
+                onClose()
+            } else {
+                toastErro("A idade não pode está vazia!")
+            }
+
+
+        } catch (error: any) {
+            toastErro(
+                error?.response?.data?.message ||
+                "Erro ao cadastrar pessoa"
+            )
         }
     };
 

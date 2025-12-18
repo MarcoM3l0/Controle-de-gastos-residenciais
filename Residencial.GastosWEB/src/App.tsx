@@ -1,4 +1,10 @@
 import type React from 'react';
+import { useEffect, useState } from 'react';
+
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+import { toastSucesso, toastErro } from './utils/toast';
 
 import Header from './components/Header'
 import { Navigation } from './components/Navigation';
@@ -14,8 +20,6 @@ import { TabelaCategoria } from './tables/TabelaCategoria'
 import type { CategoriaTabela as Categoria } from './types/categoriaDTO';
 import type { PessoaTabela as Pessoa, TotalGastosDTO as TotalGastos } from './types/pessoaDTO';
 import type { TransacaoTabela as Transacao } from './types/transacaoDTO';
-
-import { useEffect, useState } from 'react';
 
 import { getAllCategorias, getTotaisPorCategoria } from './Services/categoriaService';
 import { deletePessoa, getAllPessoas, getPessoasTotais } from './Services/pessoaService';
@@ -146,25 +150,32 @@ const App: React.FC = () => {
   }
 
 
-  const handleCadastrarPessoa = (nome: string, idade: number) => {
-    alert(`Pessoa salva: ${nome}, ${idade} anos`);
+  const handleCadastrarPessoa = () => {
     carregarDadosIniciais()
     setShowPessoaModal(false);
   };
 
   const handleDeletarPessoa = async (pessoaId: number) => {
-    deletePessoa(pessoaId);
-    carregarDadosIniciais();
+    try {
+
+      deletePessoa(pessoaId);
+      toastSucesso("Pessoas e transações associadas foram removidas com sucesso!")
+      carregarDadosIniciais();
+
+    } catch (error: any) {
+      toastErro(
+         error?.response?.data?.message ||
+            "Erro ao excluir pessoa"
+      )
+    }
   }
 
-  const handleCadastrarCategoria = (descricao: string, finalidade: string) => {
-    alert(`Categoria salva: ${descricao} (${finalidade})`);
+  const handleCadastrarCategoria = () => {
     carregarDadosIniciais()
     setShowCategoriaModal(false);
   };
 
-  const handleCadastrarTransacao = (transacao: any) => {
-    alert(`Transação salva: ${transacao.descricao}`);
+  const handleCadastrarTransacao = () => {
     carregarDadosIniciais()
     setShowTransacaoModal(false);
   };
@@ -181,7 +192,7 @@ const App: React.FC = () => {
 
       <div className="container mt-4">
         {activeTab === "transacoes" &&
-          <TabelaTransacao transacaoes={transacaes} totalGastos={totalgastos}/>
+          <TabelaTransacao transacaoes={transacaes} totalGastos={totalgastos} />
         }
 
         {activeTab === "pessoas" &&
@@ -214,6 +225,16 @@ const App: React.FC = () => {
         onSave={handleCadastrarTransacao}
         pessoas={pessoas}
         categorias={categorias}
+      />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="light"
       />
     </div>
   )

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { toastSucesso, toastErro } from "../utils/toast";
+
 import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
 import type { CategoriaTabela as Categoria } from "../types/categoriaDTO";
 
@@ -8,13 +10,7 @@ import { CreateTransacao } from "../Services/transacaoService";
 interface TransacaoModalProps {
     show: boolean;
     onClose: () => void;
-    onSave: (transacao: {
-        descricao: string;
-        valor: number;
-        tipo: string;
-        pessoaId: number;
-        categoriaId: number;
-    }) => void;
+    onSave: () => void;
     pessoas: Pessoa[];
     categorias: Categoria[];
 }
@@ -27,41 +23,42 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
     const [categoriaId, setCategoriaId] = useState<number | "">("");
 
     const handleSave = async () => {
-        if (!descricao.trim()) {
-            alert("Descrição é obrigatória!");
-            return;
-        }
-        if (valor === "" || valor <= 0) {
-            alert("Valor deve ser maior que zero!");
-            return;
-        }
-        if (pessoaId === "" || categoriaId === "") {
-            alert("Pessoa e Categoria são obrigatórios!");
-            return;
-        }
+        try {
 
-        await CreateTransacao({
-            descricao,
-            valor,
-            tipo,
-            pessoaId,
-            categoriaId
-        })
+            if (!descricao.trim()) {
+                toastErro("Descrição é obrigatória!");
+                return;
+            }
+            if (valor === "" || valor <= 0) {
+                toastErro("Valor deve ser maior que zero!");
+                return;
+            }
+            if (pessoaId === "" || categoriaId === "") {
+                toastErro("Pessoa e Categoria são obrigatórios!");
+                return;
+            }
 
-        onSave({
-            descricao,
-            valor: Number(valor),
-            tipo,
-            pessoaId: Number(pessoaId),
-            categoriaId: Number(categoriaId)
-        });
+            await CreateTransacao({
+                descricao,
+                valor,
+                tipo,
+                pessoaId,
+                categoriaId
+            })
 
-        // Resetar campos
-        setDescricao("");
-        setValor("");
-        setTipo("Despesa");
-        setPessoaId("");
-        setCategoriaId("");
+
+            toastSucesso("Transação registrada com sucesso!")
+
+            onSave();
+
+            onClose()
+
+        } catch (error: any) {
+            toastErro(
+                error?.response?.data?.message ||
+                "Erro ao cadastrar transação"
+            )
+        }
     };
 
     return (
