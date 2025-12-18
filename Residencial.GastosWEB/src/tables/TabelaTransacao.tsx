@@ -3,6 +3,8 @@ import { ArrowUpCircle, ArrowDownCircle, SquareX } from "lucide-react";
 import type { TransacaoTabela as Transacao } from "../types/transacaoDTO";
 import type { TotalGastosDTO as totalGastos } from "../types/pessoaDTO";
 
+import { formatCurrency } from "../utils/formatCurrency";
+
 import { SummaryCards } from './SummaryCards'
 
 
@@ -14,17 +16,10 @@ interface TabelaTransacaoProps {
 
 export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacaoes, totalGastos }) => {
 
-    const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-        }).format(value);
-    };
-
     return (
         <div >
             <div className="card shadow-sm">
-                
+
                 {/* Tabela */}
                 <div className="table-responsive" style={{ maxHeight: '600px', overflowY: 'auto' }}>
                     <table className="table table-hover align-middle mb-0">

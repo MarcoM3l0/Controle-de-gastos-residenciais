@@ -2,18 +2,15 @@ import React from "react";
 import { Tag } from "lucide-react";
 import type { CategoriaTabela as Categoria } from "../types/categoriaDTO";
 
+import { formatCurrency } from "../utils/formatCurrency";
+
 interface TabelaCategoriaProps {
     categorias: Categoria[];
 }
 
 export const TabelaCategoria: React.FC<TabelaCategoriaProps> = ({ categorias }) => {
 
-    const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-        }).format(value);
-    };
+    
 
     return (
         <div className="card shadow-sm">

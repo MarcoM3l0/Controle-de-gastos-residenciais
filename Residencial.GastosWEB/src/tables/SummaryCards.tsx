@@ -3,18 +3,13 @@ import { TrendingUp, TrendingDown, Wallet } from "lucide-react";
 
 import type { TotalGastosDTO as totalGastos } from "../types/pessoaDTO";
 
+import { formatCurrency } from "../utils/formatCurrency";
+
 interface SummaryCardsProps {
     totalGastos: totalGastos | null;
 }
 
 export const SummaryCards: React.FC<SummaryCardsProps> = ({ totalGastos }) => {
-
-    const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-        }).format(value);
-    };
 
     const Receitas = totalGastos?.totalReceitasGeral || 0;
     const Despesas = totalGastos?.totalDespesasGeral || 0;

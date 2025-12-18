@@ -2,19 +2,14 @@ import React from "react";
 import { Trash2, AlertTriangle, SquareX } from "lucide-react";
 import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
 
+import { formatCurrency } from "../utils/formatCurrency";
+
 interface TabelaPessoaProps {
     pessoas: Pessoa[];
     onDelete: (id: number) => void;
 }
 
 export const TabelaPessoa: React.FC<TabelaPessoaProps> = ({ pessoas: pessoa, onDelete }) => {
-
-    const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-        }).format(value);
-    };
 
     return (
         <div className="card shadow-sm">
