@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { usePessoas } from './hooks/usePessoas';
 import { useCategorias } from './hooks/useCategorias';
+import { useTransacoes } from './hooks/useTransacoes';
 
 import Header from './components/common/Header'
 import { Navigation } from './components/common/Navigation';
@@ -34,8 +35,22 @@ const App: React.FC = () => {
     - Cruza os dados
     - Exclusão de pessoas
   */
-  const { pessoas, handleDeletarPessoa, loading } = usePessoas();
-  const { categorias } = useCategorias();
+  const { pessoas, handleDeletarPessoa, loading: loadingPessoas, totalGastos } = usePessoas();
+
+  /*
+    Hook centraliza toda a lógica de dados:
+    - Busca categorias
+    - Busca totais
+    - Cruza os dados
+  */
+  const { categorias, loading: loadingCategorias } = useCategorias();
+
+  /*
+    Hook centraliza toda a lógica de dados:
+    - Busca transações
+    - Cruza os dados 
+  */
+  const { transacoes, loading: loadingTransacaoes } = useTransacoes();
 
   const handleCadastrarPessoa = () => {
     refreshPages();
@@ -66,15 +81,28 @@ const App: React.FC = () => {
 
       <div className="container mt-4">
         {activeTab === "transacoes" &&
-          <TransacoesPage key={refresh} />
+          <TransacoesPage
+            key={refresh}
+            transacoes={transacoes}
+            totalGastos={totalGastos}
+            loadingTransacaoes={loadingTransacaoes}
+            loadingPessoas={loadingPessoas}
+          />
         }
 
         {activeTab === "pessoas" &&
-          <PessoasPage key={refresh} pessoas={pessoas} onDelete={handleDeletarPessoa} loading={loading} />
+          <PessoasPage
+            key={refresh}
+            pessoas={pessoas}
+            onDelete={handleDeletarPessoa}
+            loading={loadingPessoas} />
         }
 
         {activeTab === "categorias" &&
-          <CategoriasPage key={refresh} />
+          <CategoriasPage
+            key={refresh}
+            categorias={categorias}
+            loading={loadingCategorias} />
         }
       </div>
 

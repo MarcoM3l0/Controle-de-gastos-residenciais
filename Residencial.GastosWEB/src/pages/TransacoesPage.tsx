@@ -1,10 +1,24 @@
 import React from "react";
 
-import { useTransacoes } from "../hooks/useTransacoes";
-import { usePessoas } from "../hooks/usePessoas";
-
 import { TabelaTransacao } from "../components/transacoes/TabelaTransacao";
 import { LoadingPage } from "../components/common/LoadingPage";
+
+import type { TransacaoTabela as Transacoes } from "../types/transacaoDTO";
+import type { TotalGastosDTO } from "../types/pessoaDTO";
+
+/*
+    Propriedades da página de transações.
+    - transacoes: Recebe uma lista de transações já processadas (tipo TransacaoTabela[])
+    - totalGastos: Totais gerais por pessoa (tipo TotalGastosDTO | null)
+    - loadingTransacaoes: Indica se as transações estão sendo carregadas (boolean)
+    - loadingPessoas: Indica se os dados de pessoas estão sendo carregados (boolean)
+*/
+interface TransacoesPageProps {
+    transacoes: Transacoes[],
+    totalGastos: TotalGastosDTO | null,
+    loadingTransacaoes: boolean,
+    loadingPessoas: boolean
+}
 
 /*
     Página responsável pela exibição das transações.
@@ -17,18 +31,7 @@ import { LoadingPage } from "../components/common/LoadingPage";
     - Os totais gerais vêm do contexto de pessoas
     - As transações dependem das pessoas para enriquecer os dados
 */
-export const TransacoesPage: React.FC = () => {
-
-    /*
-        Hook centraliza toda a lógica de dados:
-        - Busca transações
-        - Cruza os dados 
-    */
-    const { transacoes, loading: loadingTransacaoes } = useTransacoes();
-
-    // Hook de pessoas reutilizado apenas para obter os totais gerais
-    const { totalGastos, loading: loadingPessoas } = usePessoas();
-
+export const TransacoesPage: React.FC<TransacoesPageProps> = ({ transacoes, totalGastos, loadingTransacaoes, loadingPessoas }) => {
     return (
         <div>
             {loadingTransacaoes || loadingPessoas ?

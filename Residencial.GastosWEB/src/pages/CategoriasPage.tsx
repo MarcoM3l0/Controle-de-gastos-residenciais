@@ -1,8 +1,18 @@
 import React from "react";
 
-import { useCategorias } from "../hooks/useCategorias";
 import { TabelaCategoria } from "../components/categorias/TabelaCategoria";
 import { LoadingPage } from "../components/common/LoadingPage";
+import type { CategoriaTabela as Categoria } from "../types/categoriaDTO";
+
+/*
+    Propriedades da página de categorias.
+    - categorias: Recebe uma lista de categorias já processadas (tipo CategoriaTabela[])
+    - loading: Indica se os dados estão em carregamento (boolean)
+*/
+interface CategoriasPageProps {
+    categorias: Categoria[],
+    loading: boolean
+}
 
 /*
     Página responsável pela exibição das categorias.
@@ -12,16 +22,7 @@ import { LoadingPage } from "../components/common/LoadingPage";
     - Controlar o estado de carregamento
     - Renderizar a tabela de categorias
 */
-export const CategoriasPage: React.FC = () => {
-
-    /*
-        Hook centraliza toda a lógica de dados:
-        - Busca categorias
-        - Busca totais
-        - Cruza os dados
-    */
-    const { categorias, loading } = useCategorias();
-
+export const CategoriasPage: React.FC<CategoriasPageProps> = ({ categorias, loading }) => {
     return (
         <div>
             {loading ?
