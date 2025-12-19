@@ -72,9 +72,12 @@ const App: React.FC = () => {
     - Evita estados desatualizados após operações de escrita (POST/DELETE)
   */
   const carregar = async () => {
-    await carregarPessoas();
-    await carregarCategorias();
-    await carregarTransacoes(pessoas);
+    const pessoasAtualizadas = await carregarPessoas();
+    
+    await Promise.all([
+      carregarCategorias(),
+      carregarTransacoes(pessoasAtualizadas)
+    ]);
   }
 
   return (

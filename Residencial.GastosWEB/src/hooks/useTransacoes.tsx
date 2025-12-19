@@ -5,7 +5,6 @@ import { getAllTransacoes } from '../Services/transacaoService';
 import type { PessoaTabela as Pessoa } from '../types/pessoaDTO';
 import type { TransacaoTabela as Transacao } from '../types/transacaoDTO';
 
-import { usePessoas } from './usePessoas';
 import { useLoading } from './useLoading';
 
 /*
@@ -16,9 +15,6 @@ import { useLoading } from './useLoading';
     - Enriquecer os dados da transação com informações da pessoa
 */
 export const useTransacoes = () => {
-
-    // Reutiliza o hook de pessoas para obter dados auxiliares
-    const { pessoas } = usePessoas()
 
     const { loading, setLoading } = useLoading(false);
 
@@ -60,7 +56,7 @@ export const useTransacoes = () => {
     }
 
     useEffect(() => {
-        carregar(pessoas)
+        carregar([])
     }, [])
 
     return {
