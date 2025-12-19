@@ -34,7 +34,7 @@ const App: React.FC = () => {
     - Cruza os dados
     - Exclusão de pessoas
   */
-  const { pessoas, handleDeletarPessoa, loading: loadingPessoas, totalGastos, carregar: carregarPessoas } = usePessoas();
+  const { pessoas, handleDeletarPessoa, loading: loadingPessoas, totalGastos, carregar: carregarPessoas } = usePessoas(() => carregar());
 
   /*
     Hook centraliza toda a lógica de dados:

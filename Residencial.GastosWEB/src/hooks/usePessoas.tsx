@@ -14,15 +14,17 @@ import type { PessoaTabela as Pessoa, TotalGastosDTO as TotalGastos } from '../t
     - Busca totais gerais
     - Excluir pessoas
 */
-export const usePessoas = () => {
+export const usePessoas = (onSuccess?: () => void) => {
     const [pessoas, setPessoas] = useState<Pessoa[]>([])
     const [totalGastos, setTotalGastos] = useState<TotalGastos | null>(null)
 
     const { loading, setLoading } = useLoading(false);
 
     /*
-        Remove uma pessoa e todas as suas transações associadas.
+        Remove uma pessoa junto com todas as suas transações associadas.
         Essa regra é garantida pelo backend.
+
+        Notifica as demais abas sobre a alteração por meio de callback.
     */
     const handleDeletarPessoa = async (pessoaId: number) => {
 
@@ -31,7 +33,8 @@ export const usePessoas = () => {
 
             await deletePessoa(pessoaId);
             toastSucesso("Pessoa e transações associadas foram removidas com sucesso!");
-            carregar();
+            
+            if(onSuccess) await onSuccess();
 
         } catch (error: any) {
             toastErro(
