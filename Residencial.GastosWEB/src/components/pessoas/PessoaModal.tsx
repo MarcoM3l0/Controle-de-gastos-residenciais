@@ -74,7 +74,7 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                 "Erro ao cadastrar pessoa"
             )
         } finally {
-            isBotaoSalvar(true);
+            isBotaoSalvar(false);
         }
     };
 
