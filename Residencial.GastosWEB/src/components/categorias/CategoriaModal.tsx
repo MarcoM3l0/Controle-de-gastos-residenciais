@@ -33,6 +33,8 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
     // Estado local para armazenar a finalidade da categoria
     const [finalidade, setFinalidade] = useState<"Despesa" | "Receita" | "Ambas">("Despesa");
 
+    // Estado do botão Salvar
+    const [botaoSalvar, isBotaoSalvar] = useState(false);
 
     /*
         Função responsável por salvar a categoria.
@@ -41,6 +43,9 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
         - Exibe feedback visual (toast)
     */
     const handleSave = async () => {
+
+        isBotaoSalvar(true);
+
         try {
 
             if (!descricao.trim()) {
@@ -66,6 +71,8 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
             toastErro(
                 error?.response?.data?.message || "Erro ao cadastrar Categoria"
             )
+        } finally {
+            isBotaoSalvar(false);
         }
     };
 
@@ -103,7 +110,7 @@ const CategoriaModal: React.FC<CategoriaModalProps> = ({ show, onClose, onSave }
                 <Button variant="secondary" className="px-4" onClick={onClose}>
                     Cancelar
                 </Button>
-                <Button variant="primary" className="px-4" onClick={handleSave}>
+                <Button variant="primary" className="px-4" onClick={handleSave} disabled={botaoSalvar}>
                     Salvar
                 </Button>
             </Modal.Footer>

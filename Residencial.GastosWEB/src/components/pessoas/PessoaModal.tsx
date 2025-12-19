@@ -32,13 +32,19 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
     // Estado para armazenar a idade
     const [idade, setIdade] = useState<number | "">("");
 
-     /*
-        Função responsável por salvar a pessoa.
-        - Valida campos obrigatórios
-        - Chama o service que se comunica com a API
-        - Exibe feedback visual (toast)
-    */
+    // Estado do botão Salvar
+    const [botaoSalvar, isBotaoSalvar] = useState(false);
+
+    /*
+       Função responsável por salvar a pessoa.
+       - Valida campos obrigatórios
+       - Chama o service que se comunica com a API
+       - Exibe feedback visual (toast)
+   */
     const handleSave = async () => {
+
+        isBotaoSalvar(true);
+
         try {
             if (idade !== "" && nome.trim()) {
 
@@ -57,7 +63,7 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                 onClose();
             } else if (!nome.trim()) {
                 toastErro("Nome é obrigatória!");
-            }else {
+            } else {
                 toastErro("Idade é obrigatória!")
             }
 
@@ -67,6 +73,8 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                 error?.response?.data?.message ||
                 "Erro ao cadastrar pessoa"
             )
+        } finally {
+            isBotaoSalvar(true);
         }
     };
 
@@ -101,7 +109,7 @@ const PessoaModal: React.FC<PessoaModalProps> = ({ show, onClose, onSave }) => {
                 <Button variant="secondary" className="px-4" onClick={onClose}>
                     Cancelar
                 </Button>
-                <Button variant="primary" className="px-4" onClick={handleSave}>
+                <Button variant="primary" className="px-4" onClick={handleSave} disabled={botaoSalvar}>
                     Salvar
                 </Button>
             </Modal.Footer>

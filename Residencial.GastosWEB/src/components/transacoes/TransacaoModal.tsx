@@ -41,6 +41,9 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
     const [pessoaId, setPessoaId] = useState<number | "">("");
     const [categoriaId, setCategoriaId] = useState<number | "">("");
 
+    // Estado do botão Salvar
+    const [botaoSalvar, isBotaoSalvar] = useState(false);
+
     /*
         Função responsável por salvar a Transação.
         - Valida campos obrigatórios
@@ -48,6 +51,9 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
         - Exibe feedback visual (toast)
     */
     const handleSave = async () => {
+
+        isBotaoSalvar(true);
+
         try {
 
             if (!descricao.trim()) {
@@ -89,6 +95,8 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
                 error?.response?.data?.message ||
                 "Erro ao cadastrar transação"
             )
+        } finally {
+            isBotaoSalvar(false);
         }
     };
 
@@ -154,10 +162,10 @@ const TransacaoModal: React.FC<TransacaoModalProps> = ({ show, onClose, onSave, 
                 </Form>
             </Modal.Body>
             <Modal.Footer className="border-0">
-                <Button variant="secondary" className="px-4" onClick={onClose}>
+                <Button variant="secondary" className="px-4" onClick={onClose} >
                     Cancelar
                 </Button>
-                <Button variant="primary" className="px-4" onClick={handleSave}>
+                <Button variant="primary" className="px-4" onClick={handleSave} disabled={botaoSalvar}>
                     Salvar
                 </Button>
             </Modal.Footer>
