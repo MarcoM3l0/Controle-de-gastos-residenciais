@@ -2,8 +2,10 @@ import type React from "react";
 
 import { TabelaPessoa } from "../components/pessoas/TabelaPessoa";
 import { LoadingPage } from "../components/common/LoadingPage";
+import { ConfirmModal } from "../components/common/ConfirmModal";
 
 import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
+import { useState } from "react";
 
 /*
     Propriedades da tabela de pessoas.
@@ -27,14 +29,32 @@ interface PessoasPageProps {
 */
 export const PessoasPage: React.FC<PessoasPageProps> = ({ pessoas, onDelete, loading }) => {
 
+    // Controla a exibição do modal de confirmação
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    // Guarda a pessoa selecionada para exclusão
+    const [pessoaSelecionada, setPesoaSelecionada] = useState<Pessoa | null>(null)
+
     /*
-        Responsavel por confirmar ao usuário antes de excluir uma pessoa.
-        Se confirmado, chama o callback onDelete passando o pessoaId
+        Disparado ao clicar no botão "Excluir" da tabela.
+        Apenas abre o modal e guarda a pessoa selecionada.
     */
-    const onDeleteClick = async (pessoaId: number) => {
-        if (window.confirm("Tem certeza que deseja excluir esta pessoa?")) {
-            onDelete(pessoaId)
+    const onDeleteClick = async (pessoa: Pessoa) => {
+        setShowConfirm(true);
+        setPesoaSelecionada(pessoa);
+    }
+
+    /*
+        Confirma a exlusão
+        Executa o callback recebido do App e fecha o modal.
+    */
+    const handleConfirmDelete = () => {
+        if (pessoaSelecionada) {
+            onDelete(pessoaSelecionada.pessoaId)
         }
+
+        setShowConfirm(false);
+        setPesoaSelecionada(null);
     }
 
     return (
@@ -45,6 +65,16 @@ export const PessoasPage: React.FC<PessoasPageProps> = ({ pessoas, onDelete, loa
                 <TabelaPessoa pessoas={pessoas} onDelete={onDeleteClick}
                 />
             }
+
+            <ConfirmModal
+                show={showConfirm}
+                nomePessoa={pessoaSelecionada?.nome || ""}
+                onConfirm={handleConfirmDelete}
+                onClose={() => {
+                    setShowConfirm(false);
+                    setPesoaSelecionada(null);
+                }}
+            />
         </ div>
     )
 };

@@ -69,7 +69,7 @@ const App: React.FC = () => {
   /*
     Função responsável por sincronizar todos os dados da aplicação.
     - Garante que todas as telas estejam sempre consistentes
-    - Evita estados desatualizados após operações de escrita
+    - Evita estados desatualizados após operações de escrita (POST/DELETE)
   */
   const carregar = async () => {
     await carregarPessoas();

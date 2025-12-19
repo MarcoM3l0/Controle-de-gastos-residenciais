@@ -10,7 +10,7 @@ import { formatCurrency } from "../../utils/formatCurrency";
 */
 interface TabelaPessoaProps {
     pessoas: Pessoa[];
-    onDelete: (id: number) => void;
+    onDelete: (pessoa: Pessoa) => void;
 }
 
 /*
@@ -56,7 +56,7 @@ export const TabelaPessoa: React.FC<TabelaPessoaProps> = ({ pessoas: pessoa, onD
                                     <button
                                         className="btn btn-sm btn-outline-danger"
                                         title="Excluir pessoa e suas transações"
-                                        onClick={() => onDelete(pessoa.pessoaId)}
+                                        onClick={() => onDelete(pessoa)}
                                     >
                                         <Trash2 size={16} />
                                     </button>
