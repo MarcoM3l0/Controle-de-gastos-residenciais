@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Plus } from "lucide-react"
+import { Plus, FileSliders  } from "lucide-react"
 
 /*
     Propriedades esperadas Header.
@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ onCadastrarPessoa, onCadastrarCategoria
         <header className="bg-light p-3 mb-4 shadow-sm">
             <div className="container d-flex justify-content-between align-items-center">
                 {/* Nome do sistema */}
-                <h1 className="h5 mb-0">Controle de Gastos Residenciais</h1>
+                <h1 className="h5 mb-0"><FileSliders /> Controle de Gastos Residenciais</h1>
 
                 {/* Botões */}
                 <div className="btn-toolbar m-3" role="group" aria-label="Cadastro Buttons">
