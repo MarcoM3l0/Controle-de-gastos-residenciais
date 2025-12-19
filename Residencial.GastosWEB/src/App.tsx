@@ -27,7 +27,14 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState("transacoes");
   const [refresh, setRefresh] = useState(0);
 
-  const { pessoas } = usePessoas();
+  /*
+    Hook centraliza toda a lógica de dados:
+    - Busca pessoas
+    - Busca totais
+    - Cruza os dados
+    - Exclusão de pessoas
+  */
+  const { pessoas, handleDeletarPessoa, loading } = usePessoas();
   const { categorias } = useCategorias();
 
   const handleCadastrarPessoa = () => {
@@ -59,15 +66,15 @@ const App: React.FC = () => {
 
       <div className="container mt-4">
         {activeTab === "transacoes" &&
-          <TransacoesPage key={refresh}/>
+          <TransacoesPage key={refresh} />
         }
 
         {activeTab === "pessoas" &&
-          <PessoasPage key={refresh}/>
+          <PessoasPage key={refresh} pessoas={pessoas} onDelete={handleDeletarPessoa} loading={loading} />
         }
 
         {activeTab === "categorias" &&
-          <CategoriasPage key={refresh}/>
+          <CategoriasPage key={refresh} />
         }
       </div>
 

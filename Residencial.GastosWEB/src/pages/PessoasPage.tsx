@@ -1,8 +1,15 @@
 import type React from "react";
 
-import { usePessoas } from "../hooks/usePessoas";
 import { TabelaPessoa } from "../components/pessoas/TabelaPessoa";
 import { LoadingPage } from "../components/common/LoadingPage";
+
+import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
+
+interface PessoasPageProps {
+    pessoas: Pessoa[],
+    onDelete: (pessoaId: number) => void,
+    loading: boolean
+}
 
 /*
     Página responsável pela exibição e exclusão de pessoas.
@@ -12,27 +19,24 @@ import { LoadingPage } from "../components/common/LoadingPage";
     - Exibir tabela de pessoas
     - Solicitar confirmação antes da exclusão
 */
-export const PessoasPage: React.FC = () => {
+export const PessoasPage: React.FC<PessoasPageProps> = ({ pessoas, onDelete, loading }) => {
 
-     /*
-        Hook centraliza toda a lógica de dados:
-        - Busca pessoas
-        - Busca totais
-        - Cruza os dados
-        - Exclusão de pessoas
+    /*
+        Responsavel por confirmar ao usuário antes de excluir uma pessoa.
+        Se confirmado, chama o callback onDelete passando o pessoaId
     */
-    const { pessoas, handleDeletarPessoa, loading } = usePessoas();
+    const onDeleteClick = async (pessoaId: number) => {
+        if (window.confirm("Tem certeza que deseja excluir esta pessoa?")) {
+            onDelete(pessoaId)
+        }
+    }
 
     return (
         <div>
             {loading ?
                 <LoadingPage />
                 :
-                <TabelaPessoa pessoas={pessoas} onDelete={(pessoaId) => {
-                    if (window.confirm("Tem certeza que deseja excluir esta pessoa?")) {
-                        handleDeletarPessoa(pessoaId)
-                    }
-                }}
+                <TabelaPessoa pessoas={pessoas} onDelete={onDeleteClick}
                 />
             }
         </ div>
