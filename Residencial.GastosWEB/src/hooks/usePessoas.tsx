@@ -30,7 +30,7 @@ export const usePessoas = () => {
         try {
 
             await deletePessoa(pessoaId);
-            toastSucesso("Pessoas e transações associadas foram removidas com sucesso!");
+            toastSucesso("Pessoa e transações associadas foram removidas com sucesso!");
             carregar();
 
         } catch (error: any) {
