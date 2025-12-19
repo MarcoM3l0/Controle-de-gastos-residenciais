@@ -26,7 +26,6 @@ const App: React.FC = () => {
   const [showCategoriaModal, setShowCategoriaModal] = useState(false);
   const [showTransacaoModal, setShowTransacaoModal] = useState(false);
   const [activeTab, setActiveTab] = useState("transacoes");
-  const [refresh, setRefresh] = useState(0);
 
   /*
     Hook centraliza toda a lógica de dados:
@@ -35,7 +34,7 @@ const App: React.FC = () => {
     - Cruza os dados
     - Exclusão de pessoas
   */
-  const { pessoas, handleDeletarPessoa, loading: loadingPessoas, totalGastos } = usePessoas();
+  const { pessoas, handleDeletarPessoa, loading: loadingPessoas, totalGastos, carregar: carregarPessoas } = usePessoas();
 
   /*
     Hook centraliza toda a lógica de dados:
@@ -43,31 +42,40 @@ const App: React.FC = () => {
     - Busca totais
     - Cruza os dados
   */
-  const { categorias, loading: loadingCategorias } = useCategorias();
+  const { categorias, loading: loadingCategorias, carregar: carregarCategorias } = useCategorias();
 
   /*
     Hook centraliza toda a lógica de dados:
     - Busca transações
     - Cruza os dados 
   */
-  const { transacoes, loading: loadingTransacaoes } = useTransacoes();
+  const { transacoes, loading: loadingTransacaoes, carregar: carregarTransacoes } = useTransacoes();
 
   const handleCadastrarPessoa = () => {
-    refreshPages();
+    carregar();
     setShowPessoaModal(false);
   };
 
   const handleCadastrarCategoria = () => {
-    refreshPages();
+    carregar();
     setShowCategoriaModal(false);
   };
 
   const handleCadastrarTransacao = () => {
-    refreshPages();
+    carregar();
     setShowTransacaoModal(false);
   };
 
-  const refreshPages = () => setRefresh(r => (r === 0 ? 1 : 0))
+  /*
+    Função responsável por sincronizar todos os dados da aplicação.
+    - Garante que todas as telas estejam sempre consistentes
+    - Evita estados desatualizados após operações de escrita
+  */
+  const carregar = async () => {
+    await carregarPessoas();
+    await carregarCategorias();
+    await carregarTransacoes(pessoas);
+  }
 
   return (
     <div>
@@ -82,7 +90,6 @@ const App: React.FC = () => {
       <div className="container mt-4">
         {activeTab === "transacoes" &&
           <TransacoesPage
-            key={refresh}
             transacoes={transacoes}
             totalGastos={totalGastos}
             loadingTransacaoes={loadingTransacaoes}
@@ -92,7 +99,6 @@ const App: React.FC = () => {
 
         {activeTab === "pessoas" &&
           <PessoasPage
-            key={refresh}
             pessoas={pessoas}
             onDelete={handleDeletarPessoa}
             loading={loadingPessoas} />
@@ -100,7 +106,6 @@ const App: React.FC = () => {
 
         {activeTab === "categorias" &&
           <CategoriasPage
-            key={refresh}
             categorias={categorias}
             loading={loadingCategorias} />
         }
