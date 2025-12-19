@@ -5,6 +5,12 @@ import { LoadingPage } from "../components/common/LoadingPage";
 
 import type { PessoaTabela as Pessoa } from "../types/pessoaDTO";
 
+/*
+    Propriedades da tabela de pessoas.
+    - pessoas: Recebe uma lista de pessoas já processadas (tipo PessoaTabela[])
+    - onDelete: função para excluir uma pessoa (recebe o pessoaId: number)
+    - loading: indica se a lista está em carregamento
+*/
 interface PessoasPageProps {
     pessoas: Pessoa[],
     onDelete: (pessoaId: number) => void,
