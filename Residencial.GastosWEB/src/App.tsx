@@ -10,6 +10,7 @@ import { useTransacoes } from './hooks/useTransacoes';
 
 import Header from './components/common/Header'
 import { Navigation } from './components/common/Navigation';
+import Footer from './components/common/Footer';
 
 import PessoaModal from './components/pessoas/PessoaModal';
 import CategoriaModal from './components/categorias/CategoriaModal';
@@ -18,8 +19,6 @@ import TransacaoModal from './components/transacoes/TransacaoModal';
 import { PessoasPage } from './pages/PessoasPage';
 import { CategoriasPage } from './pages/CategoriasPage';
 import { TransacoesPage } from './pages/TransacoesPage';
-
-
 
 const App: React.FC = () => {
   const [showPessoaModal, setShowPessoaModal] = useState(false);
@@ -73,7 +72,7 @@ const App: React.FC = () => {
   */
   const carregar = async () => {
     const pessoasAtualizadas = await carregarPessoas();
-    
+
     await Promise.all([
       carregarCategorias(),
       carregarTransacoes(pessoasAtualizadas)
@@ -141,6 +140,8 @@ const App: React.FC = () => {
         draggable
         theme="light"
       />
+
+      <Footer />
     </div>
   )
 }

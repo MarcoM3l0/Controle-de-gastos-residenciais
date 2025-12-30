@@ -28,7 +28,7 @@ export const TabelaTransacao: React.FC<TabelaTransacaoProps> = ({ transacoes: tr
             <div className="card shadow-sm">
 
                 {/* Tabela */}
-                <div className="table-responsive" style={{ maxHeight: '600px', overflowY: 'auto' }}>
+                <div className="table-responsive" style={{ maxHeight: '575px', overflowY: 'auto' }}>
                     <table className="table table-hover align-middle mb-0">
                         <thead className="table-light  sticky-top">
                             <tr>
