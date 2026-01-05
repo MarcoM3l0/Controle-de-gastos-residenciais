@@ -1,6 +1,9 @@
 import type React from 'react';
 import { useState } from 'react';
 
+// Componente Vercel Speed Insights
+import { SpeedInsights } from "@vercel/speed-insights/react"
+
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -91,6 +94,7 @@ const App: React.FC = () => {
   return (
     <div>
 
+      <SpeedInsights />
       {showNoticeCarriage &&
         <NoticeCarriage show={showNoticeCarriage}
           onClose={() => handleCloseNoticeCarriage()}
