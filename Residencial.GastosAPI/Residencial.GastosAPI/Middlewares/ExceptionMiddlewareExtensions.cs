@@ -28,7 +28,7 @@ public static class ExceptionMiddlewareExtensions
                 {
                     var exception = contextFeature.Error;
 
-                    context.Response.StatusCode = exception switch
+                    var statusCode = exception switch
                     {
                         ArgumentException => (int)HttpStatusCode.BadRequest,
                         InvalidOperationException => (int)HttpStatusCode.Conflict,
@@ -36,11 +36,13 @@ public static class ExceptionMiddlewareExtensions
                         _ => (int)HttpStatusCode.InternalServerError
                     };
 
-                    await context.Response.WriteAsync(new ErroDetails()
+                    context.Response.StatusCode = statusCode;
+
+                    await context.Response.WriteAsJsonAsync(new ErroDetails()
                     {
                         StatusCode = context.Response.StatusCode,
                         Message = exception.Message
-                    }.ToString());
+                    });
                 }
             });
         });
