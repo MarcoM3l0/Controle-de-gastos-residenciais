@@ -19,19 +19,19 @@ interface NoticeCarriageProps {
 */
 const NoticeCarriage: React.FC<NoticeCarriageProps> = ({ show, onClose }) => {
     return (
-        <Modal show={show} onHide={onClose} centered>
+        <Modal show={show} onHide={onClose} centered >
             <Modal.Header closeButton>
                 <Modal.Title>Aviso de Carregamento Lento</Modal.Title>
             </Modal.Header>
             <Modal.Body className="text-center">
                 <p>
-                    Os dados podem demorar um pouco para aparecer devido à hospedagem
-                    gratuita do backend na plataforma Render. Em alguns casos, especialmente
-                    após um período sem acessos, a API pode levar mais de <strong>20
-                        segundos</strong> para responder na primeira requisição.
-                </p>
-                <p>
-                    Agradecemos a sua paciência — isso faz parte das limitações do plano gratuito.
+                    🐢 O servidor está <strong>tirando uma soneca...</strong>
+                    <br /><br />
+                    Como usamos <strong>hospedagem gratuita na Render</strong>, pode demorar alguns segundinhos
+                    para ele acordar e trazer os dados.
+                    <br /><br />
+                    A primeira requisição pode levar até <strong>20 segundos</strong>.<br />
+                    Obrigado por esperar, prometo que ele já está passando café ☕.
                 </p>
                 <Modal.Footer>
                     <Button variant="primary" onClick={onClose}>
