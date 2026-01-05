@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { usePessoas } from './hooks/usePessoas';
 import { useCategorias } from './hooks/useCategorias';
 import { useTransacoes } from './hooks/useTransacoes';
+import { useNoticeCarriage } from './hooks/useNoticeCarrige';
 
 import Header from './components/common/Header'
 import { Navigation } from './components/common/Navigation';
@@ -15,6 +16,7 @@ import Footer from './components/common/Footer';
 import PessoaModal from './components/pessoas/PessoaModal';
 import CategoriaModal from './components/categorias/CategoriaModal';
 import TransacaoModal from './components/transacoes/TransacaoModal';
+import NoticeCarriage from './components/common/NoticeCarriage';
 
 import { PessoasPage } from './pages/PessoasPage';
 import { CategoriasPage } from './pages/CategoriasPage';
@@ -50,6 +52,13 @@ const App: React.FC = () => {
   */
   const { transacoes, loading: loadingTransacaoes, carregar: carregarTransacoes } = useTransacoes();
 
+  /*
+    Hook responsável por controlar a exibição do aviso
+    sobre o possível atraso no carregamento da API hospedada
+    no Render (plano gratuito).
+  */
+  const { showNoticeCarriage, handleCloseNoticeCarriage } = useNoticeCarriage();
+
   const handleCadastrarPessoa = () => {
     carregar();
     setShowPessoaModal(false);
@@ -81,6 +90,13 @@ const App: React.FC = () => {
 
   return (
     <div>
+
+      {showNoticeCarriage &&
+        <NoticeCarriage show={showNoticeCarriage}
+          onClose={() => handleCloseNoticeCarriage()}
+        />
+      }
+
       <Header
         onCadastrarPessoa={() => setShowPessoaModal(true)}
         onCadastrarCategoria={() => setShowCategoriaModal(true)}
