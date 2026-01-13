@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Residencial.GastosAPI.Models.Errors;
+namespace Residencial.GastosAPI.Middlewares.Errors;
 
 /// <summary>
 /// Representa os detalhes de um erro ocorrido na API.

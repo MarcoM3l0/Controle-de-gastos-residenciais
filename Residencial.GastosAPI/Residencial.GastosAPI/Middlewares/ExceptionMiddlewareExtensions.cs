@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Residencial.GastosAPI.Models.Errors;
+using Residencial.GastosAPI.Middlewares.Errors;
 using System.Net;
 
 namespace Residencial.GastosAPI.Middlewares;
